@@ -1,0 +1,201 @@
+id,amount_base,entry_date,memo,reference,is_reconciled
+1,3200.74,2023-12-31T00:00:00,Software subscription,REF-000001,false
+2,3705.93,2024-01-18T00:00:00,Office supplies expense,REF-000002,false
+3,477.54,2024-01-08T00:00:00,Consultant fee payment,REF-000003,false
+4,3582.94,2024-01-22T00:00:00,Consultant fee payment,REF-000004,false
+5,1398.17,2024-01-27T00:00:00,Coffee shop purchase,REF-000005,false
+6,2118.85,2024-01-09T00:00:00,Client payment received,REF-000006,false
+7,1905.84,2024-01-11T00:00:00,Travel reimbursement,REF-000007,false
+8,2302.53,2024-01-05T00:00:00,Marketing campaign cost,REF-000008,false
+9,2890.99,2024-01-23T00:00:00,Office supplies expense,REF-000009,false
+10,4278.04,2024-01-27T00:00:00,Office supplies expense,REF-000010,false
+11,4172.21,2024-01-05T00:00:00,Travel reimbursement,REF-000011,false
+12,4683.91,2024-01-20T00:00:00,Office supplies expense,REF-000012,false
+13,3648.34,2024-01-06T00:00:00,Equipment purchase,REF-000013,false
+14,3426.23,2024-01-28T00:00:00,Coffee shop purchase,REF-000014,false
+15,1346.03,2024-01-07T00:00:00,Insurance premium,REF-000015,false
+16,3280.64,2024-01-12T00:00:00,Equipment purchase,REF-000016,false
+17,2811.23,2024-01-10T00:00:00,Insurance premium,REF-000017,false
+18,1816.36,2024-01-05T00:00:00,Consultant fee payment,REF-000018,false
+19,772.68,2024-01-07T00:00:00,Marketing campaign cost,REF-000019,false
+20,2983.48,2024-01-14T00:00:00,Consultant fee payment,REF-000020,false
+21,3606.4,2024-01-22T00:00:00,Consultant fee payment,REF-000021,false
+22,1474.57,2024-01-05T00:00:00,Equipment purchase,REF-000022,false
+23,3812.19,2024-01-16T00:00:00,Office supplies expense,REF-000023,false
+24,2543.24,2024-01-06T00:00:00,Client payment received,REF-000024,false
+25,4767.96,2024-01-31T00:00:00,Consultant fee payment,REF-000025,false
+26,2448.14,2024-01-04T00:00:00,Travel reimbursement,REF-000026,false
+27,299.05,2024-01-28T00:00:00,Insurance premium,REF-000027,false
+28,2435.09,2024-01-02T00:00:00,Consultant fee payment,REF-000028,false
+29,2381.66,2024-01-18T00:00:00,Client payment received,REF-000029,false
+30,4645.28,2024-01-24T00:00:00,Utility bill payment,REF-000030,false
+31,3252.89,2024-01-15T00:00:00,Consultant fee payment,REF-000031,false
+32,329.49,2024-01-01T00:00:00,Insurance premium,REF-000032,false
+33,45.88,2024-01-22T00:00:00,Coffee shop purchase,REF-000033,false
+34,1197.64,2024-01-21T00:00:00,Equipment purchase,REF-000034,false
+35,2368.63,2024-01-26T00:00:00,Equipment purchase,REF-000035,false
+36,493.68,2024-01-13T00:00:00,Travel reimbursement,REF-000036,false
+37,280.31,2024-01-21T00:00:00,Office supplies expense,REF-000037,false
+38,1250.8,2024-01-07T00:00:00,Consultant fee payment,REF-000038,false
+39,1399.94,2024-01-08T00:00:00,Office supplies expense,REF-000039,false
+40,262.44,2024-01-18T00:00:00,Coffee shop purchase,REF-000040,false
+41,2038.01,2024-01-16T00:00:00,Utility bill payment,REF-000041,false
+42,1901.08,2024-01-14T00:00:00,Software subscription,REF-000042,false
+43,2120.81,2024-01-31T00:00:00,Consultant fee payment,REF-000043,false
+44,957.59,2024-01-07T00:00:00,Coffee shop purchase,REF-000044,false
+45,3742.4,2024-01-01T00:00:00,Coffee shop purchase,REF-000045,false
+46,795.59,2024-01-30T00:00:00,Consultant fee payment,REF-000046,false
+47,349.12,2024-01-28T00:00:00,Utility bill payment,REF-000047,false
+48,2898.81,2024-01-01T00:00:00,Insurance premium,REF-000048,false
+49,2618.69,2024-01-30T00:00:00,Software subscription,REF-000049,false
+50,1335.42,2024-01-05T00:00:00,Software subscription,REF-000050,false
+51,2296.84,2024-01-17T00:00:00,Office supplies expense,REF-000051,false
+52,670.96,2024-01-10T00:00:00,Office supplies expense,REF-000052,false
+53,797.16,2024-01-29T00:00:00,Consultant fee payment,REF-000053,false
+54,3342.64,2024-01-22T00:00:00,Software subscription,REF-000054,false
+55,1329.68,2024-01-27T00:00:00,Office supplies expense,REF-000055,false
+56,1415.96,2024-01-02T00:00:00,Travel reimbursement,REF-000056,false
+57,1263.1,2024-02-01T00:00:00,Coffee shop purchase,REF-000057,false
+58,27.69,2024-01-29T00:00:00,Client payment received,REF-000058,false
+59,3708.74,2024-01-21T00:00:00,Marketing campaign cost,REF-000059,false
+60,4725.8,2024-01-27T00:00:00,Client payment received,REF-000060,false
+61,2154.64,2023-12-30T00:00:00,Software subscription,REF-000061,false
+62,1058.28,2024-01-04T00:00:00,Office supplies expense,REF-000062,false
+63,4869.45,2024-01-28T00:00:00,Client payment received,REF-000063,false
+64,4881.27,2024-01-30T00:00:00,Client payment received,REF-000064,false
+65,3685.46,2024-01-09T00:00:00,Marketing campaign cost,REF-000065,false
+66,804.4,2024-01-18T00:00:00,Office supplies expense,REF-000066,false
+67,1119.94,2024-02-01T00:00:00,Equipment purchase,REF-000067,false
+68,128.09,2024-01-05T00:00:00,Marketing campaign cost,REF-000068,false
+69,1762.22,2024-01-14T00:00:00,Marketing campaign cost,REF-000069,false
+70,4696.79,2024-01-07T00:00:00,Software subscription,REF-000070,false
+71,2986.89,2024-01-15T00:00:00,Travel reimbursement,REF-000071,false
+72,1932.13,2024-01-21T00:00:00,Utility bill payment,REF-000072,false
+73,2604.4,2024-01-23T00:00:00,Consultant fee payment,REF-000073,false
+74,2162.17,2024-01-29T00:00:00,Travel reimbursement,REF-000074,false
+75,2540.54,2024-01-26T00:00:00,Marketing campaign cost,REF-000075,false
+76,967.28,2024-01-20T00:00:00,Marketing campaign cost,REF-000076,false
+77,2036.32,2024-01-23T00:00:00,Coffee shop purchase,REF-000077,false
+78,3930.94,2024-01-25T00:00:00,Travel reimbursement,REF-000078,false
+79,2560.76,2024-01-23T00:00:00,Client payment received,REF-000079,false
+80,476.0,2024-02-05T00:00:00,Utility bill payment,REF-000080,false
+81,745.03,2024-01-12T00:00:00,Monthly Utility bill payment,REF-000081,false
+82,982.59,2024-01-16T00:00:00,Marketing campaign cost expense,REF-000082,false
+83,1101.76,2024-01-30T00:00:00,Consultant-fee-payment,REF-000083,false
+84,2661.03,2024-01-24T00:00:00,Insurance premium expense,REF-000084,false
+85,4154.24,2024-01-15T00:00:00,Equipment-purchase,REF-000085,false
+86,1395.06,2024-01-22T00:00:00,Consultant fee pay,REF-000086,false
+87,1687.12,2024-01-21T00:00:00,Consultant fee payment expense,REF-000087,false
+88,2046.35,2024-01-26T00:00:00,Equipment-purchase,REF-000088,false
+89,108.98,2024-02-01T00:00:00,Monthly Insurance premium,REF-000089,false
+90,3739.72,2024-01-08T00:00:00,Insurance premium expense,REF-000090,false
+91,1690.17,2024-01-29T00:00:00,Marketing campaign cost,REF-000091,false
+92,4537.78,2024-01-14T00:00:00,Insurance premium,REF-000092,false
+93,1306.85,2024-01-14T00:00:00,Utility bill pay,REF-000093,false
+94,4177.11,2024-01-26T00:00:00,Coffee shop purchase,REF-000094,false
+95,3771.38,2024-01-24T00:00:00,Monthly Utility bill payment,REF-000095,false
+96,4740.98,2024-01-10T00:00:00,Software subscription,REF-000096,false
+97,548.79,2023-12-28T00:00:00,Software subscription,REF-000097,false
+98,2966.40,2024-02-04T00:00:00,Utility bill payment,REF-000098,false
+99,1744.65,2024-01-19T00:00:00,Travel reimbursement,REF-000099,false
+100,2176.07,2024-01-10T00:00:00,Monthly Equipment purchase,REF-000100,false
+101,4041.52,2024-01-15T00:00:00,Equipment purchase,REF-000101,false
+102,1400.87,2024-01-20T00:00:00,Utility bill pay,REF-000102,false
+103,918.59,2024-01-05T00:00:00,Monthly Travel reimbursement,REF-000103,false
+104,60.98,2024-01-28T00:00:00,Utility-bill-payment,REF-000104,false
+105,2385.13,2024-01-20T00:00:00,Equipment purchase,REF-000105,false
+106,3322.14,2024-01-16T00:00:00,Equipment purchase,REF-000106,false
+107,1542.76,2024-01-03T00:00:00,Office supplies expense,REF-000107,false
+108,1090.34,2024-01-09T00:00:00,Software subscription,REF-000108,false
+109,1486.92,2024-01-03T00:00:00,Monthly Client payment received,REF-000109,false
+110,1470.00,2024-02-08T00:00:00,Client pay received,REF-000110,false
+111,2354.22,2024-01-17T00:00:00,Travel reimbursement expense,REF-000111,false
+112,377.18,2024-01-18T00:00:00,Coffee shop purchase,REF-000112,false
+113,2794.06,2024-01-18T00:00:00,Insurance premium,REF-000113,false
+114,4304.92,2024-01-10T00:00:00,Software-subscription,REF-000114,false
+115,1062.47,2024-01-31T00:00:00,Office supplies expense expense,REF-000115,false
+116,1460.81,2024-01-05T00:00:00,Software subscription,REF-000116,false
+117,3938.95,2024-01-18T00:00:00,Insurance-premium,REF-000117,false
+118,754.95,2024-01-17T00:00:00,Client pay received,REF-000118,false
+119,2201.62,2024-01-19T00:00:00,Software subscription,REF-000119,false
+120,2991.75,2024-02-06T00:00:00,Monthly Marketing campaign cost,REF-000120,false
+121,211.3,2024-01-26T00:00:00,Software subscription - Part 1,REF-000121,false
+122,350.34,2024-01-25T00:00:00,Software subscription - Part 2,REF-000122,false
+123,394.07,2024-01-27T00:00:00,Software subscription - Part 3,REF-000123,false
+124,96.14,2024-01-28T00:00:00,Equipment purchase - Part 1,REF-000124,false
+125,152.34,2024-01-27T00:00:00,Equipment purchase - Part 2,REF-000125,false
+126,243.82,2024-01-28T00:00:00,Equipment purchase - Part 3,REF-000126,false
+127,145.47,2024-01-17T00:00:00,Software subscription - Part 1,REF-000127,false
+128,325.01,2024-01-17T00:00:00,Software subscription - Part 2,REF-000128,false
+129,76.79,2024-01-25T00:00:00,Marketing campaign cost - Part 1,REF-000129,false
+130,104.13,2024-01-27T00:00:00,Marketing campaign cost - Part 2,REF-000130,false
+131,210.03,2024-01-26T00:00:00,Marketing campaign cost - Part 3,REF-000131,false
+132,134.05,2024-01-27T00:00:00,Coffee shop purchase - Part 1,REF-000132,false
+133,169.04,2024-01-25T00:00:00,Coffee shop purchase - Part 2,REF-000133,false
+134,359.78,2024-01-27T00:00:00,Coffee shop purchase - Part 3,REF-000134,false
+135,78.89,2024-01-08T00:00:00,Client payment received - Part 1,REF-000135,false
+136,177.28,2024-01-08T00:00:00,Client payment received - Part 2,REF-000136,false
+137,391.81,2024-01-10T00:00:00,Client payment received - Part 3,REF-000137,false
+138,250.24,2024-01-17T00:00:00,Software subscription - Part 1,REF-000138,false
+139,140.88,2024-01-18T00:00:00,Software subscription - Part 2,REF-000139,false
+140,457.81,2024-01-16T00:00:00,Software subscription - Part 3,REF-000140,false
+141,109.83,2024-01-31T00:00:00,Insurance premium - Part 1,REF-000141,false
+142,335.40,2024-01-31T00:00:00,Insurance premium - Part 2,REF-000142,false
+143,277.93,2024-01-19T00:00:00,Software subscription - Part 1,REF-000143,false
+144,331.19,2024-01-18T00:00:00,Software subscription - Part 2,REF-000144,false
+145,331.70,2024-01-17T00:00:00,Software subscription - Part 3,REF-000145,false
+146,103.51,2024-01-17T00:00:00,Travel reimbursement - Part 1,REF-000146,false
+147,181.01,2024-01-18T00:00:00,Travel reimbursement - Part 2,REF-000147,false
+148,217.37,2024-01-16T00:00:00,Travel reimbursement - Part 3,REF-000148,false
+149,116.83,2024-01-10T00:00:00,Marketing campaign cost - Part 1,REF-000149,false
+150,212.72,2024-01-10T00:00:00,Marketing campaign cost - Part 2,REF-000150,false
+151,285.07,2024-01-08T00:00:00,Marketing campaign cost - Part 3,REF-000151,false
+152,165.34,2024-01-03T00:00:00,Client payment received - Part 1,REF-000152,false
+153,70.35,2024-01-03T00:00:00,Client payment received - Part 2,REF-000153,false
+154,310.11,2024-01-02T00:00:00,Client payment received - Part 3,REF-000154,false
+155,188.77,2024-01-15T00:00:00,Client payment received - Part 1,REF-000155,false
+156,251.7,2024-01-16T00:00:00,Client payment received - Part 2,REF-000156,false
+157,309.73,2024-01-15T00:00:00,Client payment received - Part 3,REF-000157,false
+158,222.59,2024-01-23T00:00:00,Equipment purchase - Part 1,REF-000158,false
+159,736.14,2024-01-22T00:00:00,Equipment purchase - Part 2,REF-000159,false
+160,304.58,2024-01-26T00:00:00,Office supplies expense - Part 1,REF-000160,false
+161,693.10,2024-01-25T00:00:00,Office supplies expense - Part 2,REF-000161,false
+162,171.17,2024-01-02T00:00:00,Travel reimbursement - Part 1,REF-000162,false
+163,174.7,2024-01-03T00:00:00,Travel reimbursement - Part 2,REF-000163,false
+164,567.21,2024-01-04T00:00:00,Travel reimbursement - Part 3,REF-000164,false
+165,231.34,2024-01-08T00:00:00,Client payment received - Part 1,REF-000165,false
+166,482.28,2024-01-06T00:00:00,Client payment received - Part 2,REF-000166,false
+167,95.87,2024-01-23T00:00:00,Software subscription - Part 1,REF-000167,false
+168,72.73,2024-01-21T00:00:00,Software subscription - Part 2,REF-000168,false
+169,140.37,2024-01-22T00:00:00,Software subscription - Part 3,REF-000169,false
+170,196.41,2024-01-20T00:00:00,Software subscription - Part 1,REF-000170,false
+171,165.74,2024-01-20T00:00:00,Software subscription - Part 2,REF-000171,false
+172,588.56,2024-01-20T00:00:00,Software subscription - Part 3,REF-000172,false
+173,20.6,2024-01-15T00:00:00,Insurance premium - Part 1,REF-000173,false
+174,50.61,2024-01-13T00:00:00,Insurance premium - Part 2,REF-000174,false
+175,124.78,2024-01-15T00:00:00,Insurance premium - Part 3,REF-000175,false
+176,3936.11,2024-01-08T00:00:00,Client payment received,REF-000176,false
+177,3937.02,2024-01-07T00:00:00,Office supplies expense,REF-000177,false
+178,4150.79,2024-01-18T00:00:00,Utility bill payment,REF-000178,false
+179,2936.05,2024-01-27T00:00:00,Utility bill payment,REF-000179,false
+180,1649.51,2024-01-05T00:00:00,Insurance premium,REF-000180,false
+181,24.15,2024-01-28T00:00:00,Client payment received,REF-000181,false
+182,4937.76,2024-01-18T00:00:00,Software subscription,REF-000182,false
+183,3994.58,2024-01-04T00:00:00,Coffee shop purchase,REF-000183,false
+184,667.7,2024-01-12T00:00:00,Utility bill payment,REF-000184,false
+185,2948.38,2024-01-01T00:00:00,Client payment received,REF-000185,false
+186,1334.18,2024-01-05T00:00:00,Marketing campaign cost,REF-000186,false
+187,2635.17,2024-01-24T00:00:00,Office supplies expense,REF-000187,false
+188,2386.47,2024-01-25T00:00:00,Travel reimbursement,REF-000188,false
+189,2571.06,2024-01-04T00:00:00,Equipment purchase,REF-000189,false
+190,2524.16,2024-01-31T00:00:00,Insurance premium,REF-000190,false
+191,226.39,2024-01-26T00:00:00,Consultant fee payment,REF-000191,false
+192,1515.14,2024-01-21T00:00:00,Coffee shop purchase,REF-000192,false
+193,313.52,2024-01-16T00:00:00,Marketing campaign cost,REF-000193,false
+194,2137.11,2024-01-04T00:00:00,Equipment purchase,REF-000194,false
+195,3564.88,2024-01-15T00:00:00,Office supplies expense,REF-000195,false
+196,4497.34,2024-01-11T00:00:00,Insurance premium,REF-000196,false
+197,750.19,2024-01-05T00:00:00,Software subscription,REF-000197,false
+198,3125.34,2024-01-19T00:00:00,Consultant fee payment,REF-000198,false
+199,3563.64,2024-01-13T00:00:00,Insurance premium,REF-000199,false
+200,2657.48,2024-01-15T00:00:00,Consultant fee payment,REF-000200,false

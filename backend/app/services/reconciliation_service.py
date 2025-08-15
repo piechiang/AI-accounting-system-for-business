@@ -4,6 +4,9 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime, date, timedelta
 from rapidfuzz import fuzz
 import pandas as pd
+import itertools
+from collections import defaultdict
+import re
 
 from app.models.transactions import TransactionClean
 from app.models.reconciliation import Reconciliation, LedgerEntry
@@ -307,6 +310,270 @@ class ReconciliationService:
                 'description': le.memo,
                 'reference': le.reference
             } for le in unmatched]
+
+    async def run_reconcile(
+        self,
+        start_date: Optional[date] = None,
+        end_date: Optional[date] = None,
+        account_ids: Optional[List[int]] = None,
+        amount_tolerance: float = 0.01,
+        date_window_days: int = 5,
+        fuzzy_threshold: float = 0.85,
+        partial_max_txns: int = 3,
+        weights: Optional[Dict[str, float]] = None
+    ) -> Dict[str, Any]:
+        """Enhanced reconciliation engine with exact/windowed/fuzzy/partial matching"""
+        
+        if weights is None:
+            weights = {'exact': 0.5, 'windowed': 0.2, 'fuzzy': 0.2, 'partial': 0.1}
+        
+        # Get unreconciled data
+        transactions = self._get_unreconciled_transactions(start_date, end_date, account_ids)
+        ledger_entries = self._get_unreconciled_ledger_entries(start_date, end_date)
+        
+        matches = []
+        matched_ledger_ids = set()
+        matched_txn_ids = set()
+        
+        # Track matching statistics
+        match_stats = {
+            'exact': 0, 'windowed': 0, 'fuzzy': 0, 'partial': 0
+        }
+        
+        for txn in transactions:
+            if txn.id in matched_txn_ids:
+                continue
+                
+            available_ledgers = [le for le in ledger_entries if le.id not in matched_ledger_ids]
+            
+            # Try all matching strategies
+            best_match = self._find_best_unified_match(
+                txn, available_ledgers, amount_tolerance, 
+                date_window_days, fuzzy_threshold, partial_max_txns, weights
+            )
+            
+            if best_match and best_match['score'] >= 0.5:  # Minimum threshold
+                matches.append({
+                    'txn_id': txn.id,
+                    'ledger_id': best_match.get('ledger_ids', []),
+                    'match_type': best_match['match_type'],
+                    'score': best_match['score'],
+                    'explain': best_match['explain']
+                })
+                
+                # Mark as matched
+                matched_txn_ids.add(txn.id)
+                if best_match.get('ledger_ids'):
+                    matched_ledger_ids.update(best_match['ledger_ids'])
+                    
+                match_stats[best_match['match_type']] += 1
+        
+        # Calculate summary statistics
+        total_txns = len(transactions)
+        auto_matched = sum(match_stats[mt] for mt in ['exact', 'windowed'])
+        auto_match_rate = auto_matched / max(total_txns, 1)
+        unmatched_txns = total_txns - len(matches)
+        
+        return {
+            'matches': matches,
+            'auto_match_rate': auto_match_rate,
+            'unmatched_txns': unmatched_txns,
+            'match_type_counts': match_stats,
+            'total_processed': total_txns
+        }
+    
+    def _get_unreconciled_transactions(self, start_date, end_date, account_ids):
+        """Get unreconciled transactions"""
+        query = self.db.query(TransactionClean).filter(
+            ~TransactionClean.id.in_(
+                self.db.query(Reconciliation.transaction_clean_id).filter(
+                    Reconciliation.status != 'rejected'
+                )
+            )
+        )
+        
+        if start_date:
+            query = query.filter(TransactionClean.transaction_date >= start_date)
+        if end_date:
+            query = query.filter(TransactionClean.transaction_date <= end_date)
+        if account_ids:
+            query = query.filter(TransactionClean.account_id.in_(account_ids))
+            
+        return query.all()
+    
+    def _get_unreconciled_ledger_entries(self, start_date, end_date):
+        """Get unreconciled ledger entries"""
+        query = self.db.query(LedgerEntry).filter(LedgerEntry.is_reconciled == "false")
+        
+        if start_date:
+            query = query.filter(LedgerEntry.entry_date >= start_date)
+        if end_date:
+            query = query.filter(LedgerEntry.entry_date <= end_date)
+            
+        return query.all()
+    
+    def _find_best_unified_match(self, txn, ledgers, amount_tolerance, date_window_days, 
+                                fuzzy_threshold, partial_max_txns, weights):
+        """Find best match using unified scoring across all strategies"""
+        
+        candidates = []
+        
+        # 1. Exact matches
+        for ledger in ledgers:
+            exact_result = self._match_exact(txn, ledger, amount_tolerance)
+            if exact_result:
+                candidates.append(exact_result)
+        
+        # 2. Windowed matches  
+        for ledger in ledgers:
+            windowed_result = self._match_windowed(txn, ledger, amount_tolerance, date_window_days)
+            if windowed_result:
+                candidates.append(windowed_result)
+        
+        # 3. Fuzzy matches
+        for ledger in ledgers:
+            fuzzy_result = self._match_fuzzy(txn, ledger, fuzzy_threshold)
+            if fuzzy_result:
+                candidates.append(fuzzy_result)
+        
+        # 4. Partial matches (subset sum)
+        partial_results = self._match_partial(txn, ledgers, amount_tolerance, partial_max_txns)
+        candidates.extend(partial_results)
+        
+        # Calculate unified scores and return best
+        best_candidate = None
+        best_score = 0
+        
+        for candidate in candidates:
+            unified_score = self._calculate_unified_score(candidate, weights)
+            if unified_score > best_score:
+                best_score = unified_score
+                best_candidate = candidate
+                best_candidate['score'] = unified_score
+        
+        return best_candidate
+    
+    def _match_exact(self, txn, ledger, amount_tolerance):
+        """Exact matching: amount equal & date diff ≤ 1 day"""
+        amount_diff = abs(abs(txn.amount_base) - abs(ledger.amount_base))
+        if amount_diff > amount_tolerance:
+            return None
+            
+        date_diff = abs((txn.transaction_date.date() - ledger.entry_date.date()).days)
+        if date_diff > 1:
+            return None
+            
+        return {
+            'match_type': 'exact',
+            'ledger_ids': [ledger.id],
+            'exact_score': 1.0,
+            'windowed_score': 0.0,
+            'fuzzy_score': 0.0, 
+            'partial_score': 0.0,
+            'explain': f'Exact match: amount diff {amount_diff:.2f}, date diff {date_diff} days'
+        }
+    
+    def _match_windowed(self, txn, ledger, amount_tolerance, date_window_days):
+        """Windowed matching: amount equal & date diff ≤ window"""
+        amount_diff = abs(abs(txn.amount_base) - abs(ledger.amount_base))
+        if amount_diff > amount_tolerance:
+            return None
+            
+        date_diff = abs((txn.transaction_date.date() - ledger.entry_date.date()).days)
+        if date_diff > date_window_days:
+            return None
+            
+        # Penalize by date distance
+        window_score = max(0.5, 1.0 - (date_diff / date_window_days) * 0.3)
+        
+        return {
+            'match_type': 'windowed',
+            'ledger_ids': [ledger.id],
+            'exact_score': 0.0,
+            'windowed_score': window_score,
+            'fuzzy_score': 0.0,
+            'partial_score': 0.0,
+            'explain': f'Windowed match: amount diff {amount_diff:.2f}, date diff {date_diff} days'
+        }
+    
+    def _match_fuzzy(self, txn, ledger, fuzzy_threshold):
+        """Fuzzy matching: description similarity ≥ threshold"""
+        txn_desc = self._clean_description(txn.description_normalized or "")
+        ledger_desc = self._clean_description(ledger.memo or "")
+        
+        if not txn_desc or not ledger_desc:
+            return None
+            
+        similarity = fuzz.ratio(txn_desc, ledger_desc) / 100.0
+        if similarity < fuzzy_threshold:
+            return None
+            
+        # Additional amount/date scoring for fuzzy
+        amount_diff_pct = abs(abs(txn.amount_base) - abs(ledger.amount_base)) / max(abs(txn.amount_base), abs(ledger.amount_base))
+        amount_score = max(0, 1.0 - amount_diff_pct)
+        
+        date_diff = abs((txn.transaction_date.date() - ledger.entry_date.date()).days)
+        date_score = max(0, 1.0 - date_diff / 30.0)  # 30 day window
+        
+        fuzzy_score = similarity * 0.6 + amount_score * 0.3 + date_score * 0.1
+        
+        return {
+            'match_type': 'fuzzy',
+            'ledger_ids': [ledger.id],
+            'exact_score': 0.0,
+            'windowed_score': 0.0,
+            'fuzzy_score': fuzzy_score,
+            'partial_score': 0.0,
+            'explain': f'Fuzzy match: desc sim {similarity:.2f}, amount score {amount_score:.2f}, date score {date_score:.2f}'
+        }
+    
+    def _match_partial(self, txn, ledgers, amount_tolerance, max_txns):
+        """Partial matching: subset sum within same amount group"""
+        target_amount = abs(txn.amount_base)
+        
+        # Group ledgers by similar amounts (within 10%)
+        amount_groups = defaultdict(list)
+        for ledger in ledgers:
+            ledger_amount = abs(ledger.amount_base)
+            if abs(ledger_amount - target_amount) / max(target_amount, ledger_amount) <= 0.1:
+                amount_groups[round(ledger_amount, 2)].append(ledger)
+        
+        results = []
+        for group_ledgers in amount_groups.values():
+            # Try combinations up to max_txns
+            for r in range(1, min(max_txns + 1, len(group_ledgers) + 1)):
+                for combo in itertools.combinations(group_ledgers, r):
+                    combo_sum = sum(abs(le.amount_base) for le in combo)
+                    if abs(combo_sum - target_amount) <= amount_tolerance:
+                        partial_score = 1.0 / r  # Prefer fewer entries
+                        results.append({
+                            'match_type': 'partial',
+                            'ledger_ids': [le.id for le in combo],
+                            'exact_score': 0.0,
+                            'windowed_score': 0.0,
+                            'fuzzy_score': 0.0,
+                            'partial_score': partial_score,
+                            'explain': f'Partial match: {r} entries sum to {combo_sum:.2f}'
+                        })
+        
+        return results
+    
+    def _clean_description(self, desc):
+        """Clean description for fuzzy matching"""
+        if not desc:
+            return ""
+        # Remove timestamps, IDs, special chars
+        cleaned = re.sub(r'\d{4}-\d{2}-\d{2}|\b\d{6,}\b|[^\w\s]', ' ', desc.lower())
+        return ' '.join(cleaned.split())
+    
+    def _calculate_unified_score(self, candidate, weights):
+        """Calculate unified score using weights"""
+        return (
+            weights['exact'] * candidate.get('exact_score', 0) +
+            weights['windowed'] * candidate.get('windowed_score', 0) +
+            weights['fuzzy'] * candidate.get('fuzzy_score', 0) +
+            weights['partial'] * candidate.get('partial_score', 0)
+        )
 
     def get_reconciliation_stats(
         self,

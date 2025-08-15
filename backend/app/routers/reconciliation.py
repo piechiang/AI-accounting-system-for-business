@@ -92,6 +92,46 @@ def get_reconciliation_stats(
     reconciliation_service = ReconciliationService(db)
     return reconciliation_service.get_reconciliation_stats(start_date, end_date)
 
+@router.post("/run")
+async def run_reconcile(
+    request: dict,
+    db: Session = Depends(get_db)
+):
+    """Enhanced reconciliation engine with exact/windowed/fuzzy/partial matching"""
+    reconciliation_service = ReconciliationService(db)
+    try:
+        # Extract parameters with defaults
+        start_date = request.get('start_date')
+        end_date = request.get('end_date')
+        account_ids = request.get('account_ids')
+        
+        # Algorithm parameters
+        amount_tolerance = request.get('amount_tolerance', 0.01)
+        date_window_days = request.get('date_window_days', 5)
+        fuzzy_threshold = request.get('fuzzy_threshold', 0.85)
+        partial_max_txns = request.get('partial_max_txns', 3)
+        
+        # Weights for unified scoring
+        weights = request.get('weights', {
+            'exact': 0.5, 'windowed': 0.2, 'fuzzy': 0.2, 'partial': 0.1
+        })
+        
+        result = await reconciliation_service.run_reconcile(
+            start_date=start_date,
+            end_date=end_date,
+            account_ids=account_ids,
+            amount_tolerance=amount_tolerance,
+            date_window_days=date_window_days,
+            fuzzy_threshold=fuzzy_threshold,
+            partial_max_txns=partial_max_txns,
+            weights=weights
+        )
+        
+        return result
+        
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
 @router.get("/exceptions")
 def get_reconciliation_exceptions(
     skip: int = 0,
