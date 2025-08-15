@@ -1,23 +1,49 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from typing import List, Optional
+from enum import Enum
 
 from app.core.database import get_db
 from app.services.classification_service import ClassificationService
 from app.schemas.classification import (
     ClassificationRequest, ClassificationResponse,
     ClassificationRuleCreate, ClassificationRuleResponse,
-    ClassificationReviewRequest
+    ClassificationReviewRequest, ClassificationApprovalRequest
 )
 
+class ClassificationMode(str, Enum):
+    AUTO = "auto"
+    RULE = "rule"
+    EMBED = "embed"
+    ML = "ml"
+    LLM = "llm"
+
 router = APIRouter()
+
+@router.post("/predict", response_model=List[ClassificationResponse])
+async def predict_transactions(
+    request: ClassificationRequest,
+    mode: ClassificationMode = Query(ClassificationMode.AUTO, description="Classification mode"),
+    db: Session = Depends(get_db)
+):
+    """Classify transactions using pipeline: rule → embedding → ML → LLM"""
+    classification_service = ClassificationService(db)
+    try:
+        results = await classification_service.classify_transactions_pipeline(
+            transaction_ids=request.transaction_ids,
+            force_reclassify=request.force_reclassify,
+            mode=mode.value
+        )
+        return results
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.post("/classify", response_model=List[ClassificationResponse])
 async def classify_transactions(
     request: ClassificationRequest,
     db: Session = Depends(get_db)
 ):
-    """Classify transactions using rules + AI"""
+    """Legacy classify endpoint - maintained for backward compatibility"""
     classification_service = ClassificationService(db)
     try:
         results = await classification_service.classify_transactions(
@@ -42,6 +68,29 @@ def review_classification(
             reviewed_by=request.reviewed_by
         )
         return {"success": True, "message": "Classification reviewed", "learned": result['rule_learned']}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@router.post("/approve")
+def approve_classification(
+    request: ClassificationApprovalRequest,
+    db: Session = Depends(get_db)
+):
+    """Approve classification and learn from feedback"""
+    classification_service = ClassificationService(db)
+    try:
+        result = classification_service.approve_classification(
+            transaction_id=request.transaction_id,
+            approved_by=request.approved_by,
+            create_rule=request.create_rule,
+            update_vendor_mapping=request.update_vendor_mapping
+        )
+        return {
+            "success": True, 
+            "message": "Classification approved", 
+            "rule_created": result.get('rule_created', False),
+            "vendor_mapping_updated": result.get('vendor_mapping_updated', False)
+        }
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 

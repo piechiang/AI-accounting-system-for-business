@@ -19,6 +19,8 @@ interface UnclassifiedTransaction {
   suggested_category: string;
   confidence: number;
   ai_reason: string;
+  source: string;  // source tag for classification method
+  similarity_score?: number;
 }
 
 export default function Classification() {
@@ -82,7 +84,8 @@ export default function Classification() {
           amount: -14.99,
           suggested_category: 'Software Expenses',
           confidence: 0.92,
-          ai_reason: 'Video communication software subscription, commonly used for business meetings'
+          ai_reason: 'Video communication software subscription, commonly used for business meetings',
+          source: 'vendor_mapping'
         },
         {
           id: 102,
@@ -91,7 +94,9 @@ export default function Classification() {
           amount: -156.78,
           suggested_category: 'Office Supplies',
           confidence: 0.78,
-          ai_reason: 'Wholesale purchase that could include office supplies or business inventory'
+          ai_reason: 'Wholesale purchase that could include office supplies or business inventory',
+          source: 'embedding',
+          similarity_score: 0.85
         },
         {
           id: 103,
@@ -100,7 +105,8 @@ export default function Classification() {
           amount: -21.00,
           suggested_category: 'Software Expenses',
           confidence: 0.96,
-          ai_reason: 'Software development platform subscription for code repository hosting'
+          ai_reason: 'Software development platform subscription for code repository hosting',
+          source: 'llm'
         }
       ];
 
@@ -114,12 +120,41 @@ export default function Classification() {
     }
   };
 
-  const handleApproveClassification = async (transactionId: number, category: string) => {
+  const handleApproveClassification = async (transactionId: number, category: string, createRule: boolean = false) => {
     try {
+      // Call approval API endpoint
+      const response = await fetch('/api/classify/approve', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          transaction_id: transactionId,
+          approved_by: 'current_user', // Replace with actual user
+          create_rule: createRule,
+          update_vendor_mapping: true
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Approval failed');
+      }
+      
+      const result = await response.json();
+      
       setUnclassifiedTransactions(prev => 
         prev.filter(t => t.id !== transactionId)
       );
-      toast.success(`Transaction classified as ${category}`);
+      
+      let message = `Transaction classified as ${category}`;
+      if (result.rule_created) {
+        message += ' (New rule created)';
+      }
+      if (result.vendor_mapping_updated) {
+        message += ' (Vendor mapping updated)';
+      }
+      
+      toast.success(message);
     } catch (error) {
       toast.error('Failed to approve classification');
     }
@@ -149,7 +184,8 @@ export default function Classification() {
           amount: -12.99,
           suggested_category: 'Software Expenses',
           confidence: 0.94,
-          ai_reason: 'Cloud storage service subscription for business file storage and collaboration'
+          ai_reason: 'Cloud storage service subscription for business file storage and collaboration',
+          source: 'regex_rule'
         }
       ];
       
@@ -279,6 +315,15 @@ export default function Classification() {
                           <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-800 text-sm rounded">
                             {transaction.suggested_category}
                           </span>
+                          <span className={`ml-2 px-2 py-1 text-xs rounded ${
+                            transaction.source === 'vendor_mapping' ? 'bg-green-100 text-green-800' :
+                            transaction.source === 'regex_rule' ? 'bg-purple-100 text-purple-800' :
+                            transaction.source === 'embedding' ? 'bg-orange-100 text-orange-800' :
+                            transaction.source === 'llm' ? 'bg-red-100 text-red-800' :
+                            'bg-gray-100 text-gray-800'
+                          }`}>
+                            {transaction.source.replace('_', ' ').toUpperCase()}
+                          </span>
                         </div>
                         <div className="flex items-center">
                           <span className="text-sm text-gray-500">Confidence:</span>
@@ -299,11 +344,18 @@ export default function Classification() {
                       
                       <div className="flex space-x-3">
                         <button
-                          onClick={() => handleApproveClassification(transaction.id, transaction.suggested_category)}
+                          onClick={() => handleApproveClassification(transaction.id, transaction.suggested_category, false)}
                           className="px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 flex items-center"
                         >
                           <span className="mr-1">✓</span>
                           Approve
+                        </button>
+                        <button
+                          onClick={() => handleApproveClassification(transaction.id, transaction.suggested_category, true)}
+                          className="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 flex items-center"
+                        >
+                          <span className="mr-1">📋</span>
+                          Approve + Create Rule
                         </button>
                         <button
                           onClick={() => handleRejectClassification(transaction.id)}

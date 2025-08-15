@@ -1,0 +1,57 @@
+{
+  "total_transactions": 230,
+  "total_amount": 132610.98999999996,
+  "avg_amount": 576.5695217391303,
+  "ambiguous_transactions": 30,
+  "ambiguous_percentage": 13.043478260869565,
+  "categories": {
+    "Meals & Entertainment": {
+      "count": 25,
+      "total_amount": 1986.6200000000001,
+      "percentage": 10.869565217391305,
+      "avg_amount": 79.46480000000001
+    },
+    "Travel Expenses": {
+      "count": 33,
+      "total_amount": 14575.34,
+      "percentage": 14.347826086956522,
+      "avg_amount": 441.6769696969697
+    },
+    "Equipment Expenses": {
+      "count": 25,
+      "total_amount": 29513.499999999996,
+      "percentage": 10.869565217391305,
+      "avg_amount": 1180.54
+    },
+    "Office Expenses": {
+      "count": 39,
+      "total_amount": 5170.2300000000005,
+      "percentage": 16.956521739130434,
+      "avg_amount": 132.57000000000002
+    },
+    "Utilities": {
+      "count": 25,
+      "total_amount": 4584.7,
+      "percentage": 10.869565217391305,
+      "avg_amount": 183.388
+    },
+    "Vehicle Expenses": {
+      "count": 25,
+      "total_amount": 1507.42,
+      "percentage": 10.869565217391305,
+      "avg_amount": 60.296800000000005
+    },
+    "Software Expenses": {
+      "count": 25,
+      "total_amount": 2083.3,
+      "percentage": 10.869565217391305,
+      "avg_amount": 83.33200000000001
+    },
+    "Professional Services": {
+      "count": 33,
+      "total_amount": 73189.88,
+      "percentage": 14.347826086956522,
+      "avg_amount": 2217.8751515151516
+    }
+  }
+}

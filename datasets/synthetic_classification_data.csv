@@ -1,0 +1,231 @@
+id,date,description,vendor,amount,category,coa_code,confidence_expected,notes,is_ambiguous
+1,2025-07-07,LOCAL RESTAURANT HOLDINGS,LOCAL,-65.74,Meals & Entertainment,5200,0.8743984439578438,Generated from template: Meals & Entertainment,False
+2,2025-07-08,UBER RIDE PHILADELPHIA,UBER,-734.51,Travel Expenses,5400,0.8524786361898189,Generated from template: Travel Expenses,False
+3,2025-05-22,PIZZA HUT SAN JOSE CO,PIZZA,-30.77,Meals & Entertainment,5200,0.874484254407835,Generated from template: Meals & Entertainment,False
+4,2025-06-06,HP ENTERPRISE LLC,HP,-1469.57,Equipment Expenses,5500,0.8502675722602886,Generated from template: Equipment Expenses,False
+5,2025-06-15,WALMART BUSINESS PURCHASE,WALMART,-68.98,Office Expenses,5000,0.6657119106864461,Ambiguous - could be supplies or food,True
+6,2025-07-30,AMAZON OFFICE SUPPLIES SYSTEMS,AMAZON,-169.06,Office Expenses,5000,0.892843382729458,Generated from template: Office Expenses,False
+7,2025-08-06,INTERNET SERVICE PROVIDER,INTERNET,-135.48,Utilities,5700,0.8690131989277088,Generated from template: Utilities,False
+8,2025-06-20,SPEEDWAY GAS PHILADELPHIA,SPEEDWAY,-87.75,Vehicle Expenses,5100,0.911591235405355,Generated from template: Vehicle Expenses,False
+9,2025-07-10,OFFICEMAX NYC,OFFICEMAX,-61.33,Office Expenses,5000,0.8840250516517991,Generated from template: Office Expenses,False
+10,2025-08-09,PHONE COMPANY,PHONE,-229.11,Utilities,5700,0.9180855094182022,Generated from template: Utilities,False
+11,2025-06-03,OFFICE DEPOT NYC,OFFICE,-85.54,Office Expenses,5000,0.9236471214164013,Generated from template: Office Expenses,False
+12,2025-07-09,CHIPOTLE BOSTON,CHIPOTLE,-18.19,Meals & Entertainment,5200,0.8889476812666941,Generated from template: Meals & Entertainment,False
+13,2025-07-04,OFFICEMAX CHICAGO,OFFICEMAX,-262.07,Office Expenses,5000,0.8777973603110092,Generated from template: Office Expenses,False
+14,2025-06-02,SLACK TECHNOLOGIES,SLACK,-39.98,Software Expenses,5300,0.922335256588097,Generated from template: Software Expenses,False
+15,2025-08-07,WATER DEPARTMENT,WATER,-275.45,Utilities,5700,0.8539422573960818,Generated from template: Utilities,False
+16,2025-05-22,MARRIOTT HOTEL EL PASO,MARRIOTT,-401.34,Travel Expenses,5400,0.8808258349930134,Generated from template: Travel Expenses,False
+17,2025-05-27,TECH CONSULTING SERVICES,TECH,-600.7,Professional Services,5600,0.6186460203407355,Ambiguous - consulting vs software,True
+18,2025-07-10,ZOOM VIDEO COMMUNICATIONS ENTERPRISES,ZOOM,-70.34,Software Expenses,5300,0.8911102276049738,Generated from template: Software Expenses,False
+19,2025-07-23,ATLASSIAN JIRA,ATLASSIAN,-33.11,Software Expenses,5300,0.9372433041085257,Generated from template: Software Expenses,False
+20,2025-06-02,ADOBE CREATIVE CLOUD,ADOBE,-84.57,Software Expenses,5300,0.8628391464499763,Generated from template: Software Expenses,False
+21,2025-07-16,QUICKBOOKS ONLINE,QUICKBOOKS,-44.01,Software Expenses,5300,0.9307496997766643,Generated from template: Software Expenses,False
+22,2025-06-06,OFFICEMAX DENVER,OFFICEMAX,-59.4,Office Expenses,5000,0.9039379030119625,Generated from template: Office Expenses,False
+23,2025-07-15,STARBUCKS BOSTON INC,STARBUCKS,-76.45,Meals & Entertainment,5200,0.9167577732586353,Generated from template: Meals & Entertainment,False
+24,2025-05-29,TECH CONSULTING SERVICES,TECH,-1098.1,Professional Services,5600,0.6625096699994266,Ambiguous - consulting vs software,True
+25,2025-06-25,AUTO ZONE AUSTIN,AUTO,-54.49,Vehicle Expenses,5100,0.8751403676200942,Generated from template: Vehicle Expenses,False
+26,2025-07-15,CITY UTILITIES INC,CITY,-207.38,Utilities,5700,0.9409387638427892,Generated from template: Utilities,False
+27,2025-07-07,STARBUCKS FORT WORTH,STARBUCKS,-109.36,Meals & Entertainment,5200,0.9224181377627289,Generated from template: Meals & Entertainment,False
+28,2025-06-17,AMERICAN AIRLINES,AMERICAN,-209.21,Travel Expenses,5400,0.9166933410635543,Generated from template: Travel Expenses,False
+29,2025-07-07,MICRO CENTER HOUSTON,MICRO,-899.4,Equipment Expenses,5500,0.944267624074404,Generated from template: Equipment Expenses,False
+30,2025-06-24,APPLE STORE DENVER,APPLE,-2289.55,Equipment Expenses,5500,0.936016666582618,Generated from template: Equipment Expenses,False
+31,2025-06-17,PROFESSIONAL SERVICES,PROFESSIONAL,-4904.19,Professional Services,5600,0.8956786472732313,Generated from template: Professional Services,False
+32,2025-06-07,COMCAST BUSINESS,COMCAST,-278.02,Utilities,5700,0.8756970084563263,Generated from template: Utilities,False
+33,2025-05-31,OFFICEMAX BOSTON,OFFICEMAX,-19.25,Office Expenses,5000,0.9181710369026574,Generated from template: Office Expenses,False
+34,2025-06-15,HERTZ RENTAL CAR,HERTZ,-743.05,Travel Expenses,5400,0.8722923547205809,Generated from template: Travel Expenses,False
+35,2025-08-13,EXXON MOBIL SAN ANTONIO,EXXON,-73.28,Vehicle Expenses,5100,0.8685149842437662,Generated from template: Vehicle Expenses,False
+36,2025-06-18,PANERA BREAD DALLAS,PANERA,-131.94,Meals & Entertainment,5200,0.9334910914912121,Generated from template: Meals & Entertainment,False
+37,2025-07-05,AT&T BUSINESS,AT&T,-96.59,Utilities,5700,0.9353335458660186,Generated from template: Utilities,False
+38,2025-07-12,TECH CONSULTING SERVICES,TECH,-1568.6,Professional Services,5600,0.6146981431532901,Ambiguous - consulting vs software,True
+39,2025-06-13,HP ENTERPRISE,HP,-677.9,Equipment Expenses,5500,0.8764646125290008,Generated from template: Equipment Expenses,False
+40,2025-05-28,AT&T BUSINESS GROUP,AT&T,-232.01,Utilities,5700,0.9409627812319327,Generated from template: Utilities,False
+41,2025-07-02,VERIZON BUSINESS,VERIZON,-250.36,Utilities,5700,0.8590302875568583,Generated from template: Utilities,False
+42,2025-07-29,LOCAL RESTAURANT,LOCAL,-11.88,Meals & Entertainment,5200,0.8880381028927711,Generated from template: Meals & Entertainment,False
+43,2025-05-20,EXXON MOBIL PHILADELPHIA,EXXON,-32.03,Vehicle Expenses,5100,0.9428887168407121,Generated from template: Vehicle Expenses,False
+44,2025-07-30,QUICKBOOKS ONLINE INC,QUICKBOOKS,-68.68,Software Expenses,5300,0.906522692384409,Generated from template: Software Expenses,False
+45,2025-07-28,HP ENTERPRISE INTERNATIONAL,HP,-907.5,Equipment Expenses,5500,0.9421192528967638,Generated from template: Equipment Expenses,False
+46,2025-07-26,PANERA BREAD PHILADELPHIA,PANERA,-53.47,Meals & Entertainment,5200,0.9333725169304057,Generated from template: Meals & Entertainment,False
+47,2025-06-29,DOMINOS PIZZA FORT WORTH,DOMINOS,-76.19,Meals & Entertainment,5200,0.9261229707894026,Generated from template: Meals & Entertainment,False
+48,2025-06-02,COMCAST BUSINESS,COMCAST,-90.6,Utilities,5700,0.9286512811030505,Generated from template: Utilities,False
+49,2025-07-23,BP GAS STATION SEATTLE TECHNOLOGIES,BP,-88.47,Vehicle Expenses,5100,0.9096790740512302,Generated from template: Vehicle Expenses,False
+50,2025-06-17,JIFFY LUBE NYC CO,JIFFY,-51.28,Vehicle Expenses,5100,0.8806206030130088,Generated from template: Vehicle Expenses,False
+51,2025-06-30,ADVANCE AUTO PARTS,ADVANCE,-60.97,Vehicle Expenses,5100,0.8925503812705214,Generated from template: Vehicle Expenses,False
+52,2025-06-26,DROPBOX SUBSCRIPTION ENTERPRISES,DROPBOX,-51.99,Software Expenses,5300,0.9429018331705514,Generated from template: Software Expenses,False
+53,2025-07-25,DELTA AIR LINES HOLDINGS,DELTA,-815.98,Travel Expenses,5400,0.853602813806083,Generated from template: Travel Expenses,False
+54,2025-05-28,AMAZON OFFICE SUPPLIES INTERNATIONAL,AMAZON,-111.58,Office Expenses,5000,0.8879927300637337,Generated from template: Office Expenses,False
+55,2025-07-31,AUTO ZONE SEATTLE,AUTO,-78.66,Vehicle Expenses,5100,0.8768395538049225,Generated from template: Vehicle Expenses,False
+56,2025-08-01,WALMART BUSINESS PURCHASE,WALMART,-84.15,Office Expenses,5000,0.6005671102960033,Ambiguous - could be supplies or food,True
+57,2025-07-16,MICRO CENTER HOUSTON,MICRO,-1520.34,Equipment Expenses,5500,0.8978714208606398,Generated from template: Equipment Expenses,False
+58,2025-08-04,MARRIOTT HOTEL BOSTON,MARRIOTT,-380.87,Travel Expenses,5400,0.924947761114354,Generated from template: Travel Expenses,False
+59,2025-07-26,ADOBE CREATIVE CLOUD,ADOBE,-130.58,Software Expenses,5300,0.85979087282016,Generated from template: Software Expenses,False
+60,2025-08-11,CDW CORPORATION,CDW,-247.7,Equipment Expenses,5500,0.9321421245258383,Generated from template: Equipment Expenses,False
+61,2025-07-23,IT SERVICES HOUSTON,IT,-2285.49,Professional Services,5600,0.9410441677696466,Generated from template: Professional Services,False
+62,2025-07-17,AMAZON ELECTRONICS CORP,AMAZON,-780.69,Equipment Expenses,5500,0.8614087140724924,Generated from template: Equipment Expenses,False
+63,2025-08-07,JIFFY LUBE BOSTON,JIFFY,-69.88,Vehicle Expenses,5100,0.9211842406472722,Generated from template: Vehicle Expenses,False
+64,2025-05-22,PHONE COMPANY,PHONE,-75.63,Utilities,5700,0.9446261532881945,Generated from template: Utilities,False
+65,2025-05-22,ACCOUNTING FIRM CHARLOTTE LTD,ACCOUNTING,-4531.61,Professional Services,5600,0.8824374666781302,Generated from template: Professional Services,False
+66,2025-08-01,WALMART SUPPLIES,WALMART,-125.26,Office Expenses,5000,0.9496121380240097,Generated from template: Office Expenses,False
+67,2025-07-11,AIRBNB COLUMBUS,AIRBNB,-713.22,Travel Expenses,5400,0.9106208853306142,Generated from template: Travel Expenses,False
+68,2025-08-01,HP ENTERPRISE,HP,-1157.19,Equipment Expenses,5500,0.9290740829843419,Generated from template: Equipment Expenses,False
+69,2025-05-27,OFFICEMAX SAN DIEGO TECHNOLOGIES,OFFICEMAX,-284.92,Office Expenses,5000,0.9231907594844627,Generated from template: Office Expenses,False
+70,2025-05-17,NEWEGG HARDWARE,NEWEGG,-2097.32,Equipment Expenses,5500,0.9157660386483129,Generated from template: Equipment Expenses,False
+71,2025-06-30,JIFFY LUBE NYC,JIFFY,-28.39,Vehicle Expenses,5100,0.8724222165719748,Generated from template: Vehicle Expenses,False
+72,2025-07-15,STARBUCKS CHICAGO,STARBUCKS,-29.05,Meals & Entertainment,5200,0.8681729026513432,Generated from template: Meals & Entertainment,False
+73,2025-06-17,LEGAL SERVICES LLC GROUP,LEGAL,-2238.83,Professional Services,5600,0.903116631814876,Generated from template: Professional Services,False
+74,2025-06-13,TECH CONSULTING SERVICES,TECH,-637.51,Professional Services,5600,0.7283408934466435,Ambiguous - consulting vs software,True
+75,2025-07-09,STARBUCKS JACKSONVILLE SERVICES,STARBUCKS,-135.12,Meals & Entertainment,5200,0.9038220567610231,Generated from template: Meals & Entertainment,False
+76,2025-06-10,SALESFORCE.COM,SALESFORCE.COM,-78.12,Software Expenses,5300,0.8796707825494564,Generated from template: Software Expenses,False
+77,2025-07-22,STAPLES TECHNOLOGY,STAPLES,-324.66,Equipment Expenses,5500,0.8861779359151675,Generated from template: Equipment Expenses,False
+78,2025-06-26,MICROSOFT CORP SUBSCRIPTION,MICROSOFT,-85.9,Software Expenses,5300,0.8557165272907483,Generated from template: Software Expenses,False
+79,2025-07-04,ACCOUNTING FIRM AUSTIN,ACCOUNTING,-4317.81,Professional Services,5600,0.9454139592622676,Generated from template: Professional Services,False
+80,2025-06-13,SPEEDWAY GAS AUSTIN GROUP,SPEEDWAY,-36.82,Vehicle Expenses,5100,0.8854824966176095,Generated from template: Vehicle Expenses,False
+81,2025-06-17,OFFICE DEPOT WASHINGTON,OFFICE,-167.69,Office Expenses,5000,0.8663402493761928,Generated from template: Office Expenses,False
+82,2025-06-21,UBER RIDE FORT WORTH,UBER,-781.37,Travel Expenses,5400,0.8851146129082752,Generated from template: Travel Expenses,False
+83,2025-05-18,PHONE COMPANY ENTERPRISES,PHONE,-146.52,Utilities,5700,0.9065929016955698,Generated from template: Utilities,False
+84,2025-06-10,CHIPOTLE FORT WORTH,CHIPOTLE,-90.93,Meals & Entertainment,5200,0.8920446333772908,Generated from template: Meals & Entertainment,False
+85,2025-07-10,COMCAST BUSINESS,COMCAST,-121.98,Utilities,5700,0.9190313512460129,Generated from template: Utilities,False
+86,2025-05-26,MICROSOFT CORP SUBSCRIPTION CORP,MICROSOFT,-130.34,Software Expenses,5300,0.9014156119808588,Generated from template: Software Expenses,False
+87,2025-05-25,BUSINESS CONSULTANT,BUSINESS,-324.11,Professional Services,5600,0.8734770243102021,Generated from template: Professional Services,False
+88,2025-07-09,CONSULTING GROUP,CONSULTING,-1489.8,Professional Services,5600,0.8839875243114296,Generated from template: Professional Services,False
+89,2025-05-22,WALMART BUSINESS PURCHASE,WALMART,-95.91,Office Expenses,5000,0.7454485994327471,Ambiguous - could be supplies or food,True
+90,2025-07-03,PHONE COMPANY,PHONE,-254.88,Utilities,5700,0.860834610219923,Generated from template: Utilities,False
+91,2025-06-01,DESIGN STUDIO,DESIGN,-3536.51,Professional Services,5600,0.8528869442441663,Generated from template: Professional Services,False
+92,2025-05-25,TECH CONSULTING SERVICES,TECH,-1289.13,Professional Services,5600,0.69524919308465,Ambiguous - consulting vs software,True
+93,2025-05-20,WALMART BUSINESS PURCHASE,WALMART,-33.24,Office Expenses,5000,0.6263606459123795,Ambiguous - could be supplies or food,True
+94,2025-06-14,AT&T BUSINESS,AT&T,-81.74,Utilities,5700,0.9360140596898822,Generated from template: Utilities,False
+95,2025-07-14,MICROSOFT CORP SUBSCRIPTION,MICROSOFT,-47.12,Software Expenses,5300,0.878524922894692,Generated from template: Software Expenses,False
+96,2025-05-20,SHELL TRAVEL CENTER,SHELL,-52.9,Travel Expenses,5400,0.6121650814989011,Ambiguous - travel stop vs regular gas,True
+97,2025-06-29,AT&T BUSINESS,AT&T,-120.96,Utilities,5700,0.930423253860451,Generated from template: Utilities,False
+98,2025-05-20,NEWEGG HARDWARE,NEWEGG,-1588.53,Equipment Expenses,5500,0.8591326886630984,Generated from template: Equipment Expenses,False
+99,2025-06-17,ATLASSIAN JIRA LLC,ATLASSIAN,-48.99,Software Expenses,5300,0.9374485954070579,Generated from template: Software Expenses,False
+100,2025-08-09,ENTERPRISE RENT-A-CAR SYSTEMS,ENTERPRISE,-287.3,Travel Expenses,5400,0.8603586501918211,Generated from template: Travel Expenses,False
+101,2025-07-09,OLIVE GARDEN WASHINGTON,OLIVE,-19.75,Meals & Entertainment,5200,0.9386136909050982,Generated from template: Meals & Entertainment,False
+102,2025-08-10,AMAZON PURCHASE BUSINESS,AMAZON,-111.62,Office Expenses,5000,0.788225973770446,Ambiguous - could be office supplies or equipment,True
+103,2025-06-17,UBER RIDE DENVER GROUP,UBER,-795.81,Travel Expenses,5400,0.8869527088738883,Generated from template: Travel Expenses,False
+104,2025-07-06,ADVANCE AUTO PARTS,ADVANCE,-87.27,Vehicle Expenses,5100,0.9441470598541309,Generated from template: Vehicle Expenses,False
+105,2025-06-20,APPLE STORE COLUMBUS CO,APPLE,-1689.55,Equipment Expenses,5500,0.932663115965006,Generated from template: Equipment Expenses,False
+106,2025-06-28,UBER RIDE JACKSONVILLE,UBER,-855.28,Travel Expenses,5400,0.9123155409946409,Generated from template: Travel Expenses,False
+107,2025-08-04,ACCOUNTING FIRM SEATTLE,ACCOUNTING,-1435.36,Professional Services,5600,0.9192704598586882,Generated from template: Professional Services,False
+108,2025-08-14,MARATHON PETROLEUM,MARATHON,-82.21,Vehicle Expenses,5100,0.938010734525523,Generated from template: Vehicle Expenses,False
+109,2025-07-10,SOUTHWEST AIRLINES,SOUTHWEST,-507.94,Travel Expenses,5400,0.9060906864774746,Generated from template: Travel Expenses,False
+110,2025-07-09,STAPLES BOSTON ENTERPRISES,STAPLES,-215.17,Office Expenses,5000,0.8720440622040696,Generated from template: Office Expenses,False
+111,2025-07-21,ACCOUNTING FIRM PHOENIX,ACCOUNTING,-3625.53,Professional Services,5600,0.9205411629925854,Generated from template: Professional Services,False
+112,2025-05-22,COSTCO OFFICE SUPPLIES,COSTCO,-187.45,Office Expenses,5000,0.9229731786693818,Generated from template: Office Expenses,False
+113,2025-08-10,BUSINESS CONSULTANT,BUSINESS,-2378.92,Professional Services,5600,0.850939743145487,Generated from template: Professional Services,False
+114,2025-05-27,LENOVO SYSTEMS TECHNOLOGIES,LENOVO,-2382.98,Equipment Expenses,5500,0.949391812271022,Generated from template: Equipment Expenses,False
+115,2025-05-29,DELTA AIR LINES TECHNOLOGIES,DELTA,-898.64,Travel Expenses,5400,0.8573260721099633,Generated from template: Travel Expenses,False
+116,2025-06-20,COSTCO OFFICE SUPPLIES GROUP,COSTCO,-75.49,Office Expenses,5000,0.9201820313458551,Generated from template: Office Expenses,False
+117,2025-05-25,SALESFORCE.COM LLC,SALESFORCE.COM,-19.58,Software Expenses,5300,0.917521255360409,Generated from template: Software Expenses,False
+118,2025-06-07,BP GAS STATION CHARLOTTE,BP,-74.84,Vehicle Expenses,5100,0.9105892692560311,Generated from template: Vehicle Expenses,False
+119,2025-07-12,APPLEBEES WASHINGTON,APPLEBEES,-120.61,Meals & Entertainment,5200,0.9112652322761763,Generated from template: Meals & Entertainment,False
+120,2025-06-16,SHELL TRAVEL CENTER,SHELL,-69.5,Travel Expenses,5400,0.7177705844100885,Ambiguous - travel stop vs regular gas,True
+121,2025-07-30,SHELL TRAVEL CENTER,SHELL,-61.22,Travel Expenses,5400,0.7096712868096722,Ambiguous - travel stop vs regular gas,True
+122,2025-06-17,MARRIOTT HOTEL COLUMBUS,MARRIOTT,-781.12,Travel Expenses,5400,0.8766805709594472,Generated from template: Travel Expenses,False
+123,2025-06-25,AUDIT SERVICES,AUDIT,-3592.45,Professional Services,5600,0.905083900700267,Generated from template: Professional Services,False
+124,2025-05-25,PIZZA HUT FORT WORTH,PIZZA,-113.39,Meals & Entertainment,5200,0.8914867895898217,Generated from template: Meals & Entertainment,False
+125,2025-06-01,SHELL TRAVEL CENTER,SHELL,-39.49,Travel Expenses,5400,0.7898021576524276,Ambiguous - travel stop vs regular gas,True
+126,2025-06-26,GITHUB INC,GITHUB,-38.59,Software Expenses,5300,0.8738685952615846,Generated from template: Software Expenses,False
+127,2025-06-03,WALMART SUPPLIES,WALMART,-299.23,Office Expenses,5000,0.9009526293676464,Generated from template: Office Expenses,False
+128,2025-07-23,QUICKBOOKS ONLINE,QUICKBOOKS,-138.7,Software Expenses,5300,0.8657432727939482,Generated from template: Software Expenses,False
+129,2025-07-26,MICRO CENTER CHARLOTTE,MICRO,-668.17,Equipment Expenses,5500,0.8631013228950446,Generated from template: Equipment Expenses,False
+130,2025-08-05,HP ENTERPRISE,HP,-370.38,Equipment Expenses,5500,0.9186451018256017,Generated from template: Equipment Expenses,False
+131,2025-08-01,STAPLES TECHNOLOGY,STAPLES,-1206.84,Equipment Expenses,5500,0.8539860784183613,Generated from template: Equipment Expenses,False
+132,2025-05-17,QUICKBOOKS ONLINE,QUICKBOOKS,-92.37,Software Expenses,5300,0.8570993086009032,Generated from template: Software Expenses,False
+133,2025-06-08,AUDIT SERVICES,AUDIT,-1023.28,Professional Services,5600,0.8578968350659995,Generated from template: Professional Services,False
+134,2025-06-25,DELTA AIR LINES,DELTA,-288.13,Travel Expenses,5400,0.9166892904105729,Generated from template: Travel Expenses,False
+135,2025-07-16,DELTA AIR LINES,DELTA,-59.36,Travel Expenses,5400,0.8722433717545665,Generated from template: Travel Expenses,False
+136,2025-05-29,MICROSOFT CORP SUBSCRIPTION,MICROSOFT,-147.77,Software Expenses,5300,0.8560612674077014,Generated from template: Software Expenses,False
+137,2025-06-05,SOUTHWEST AIRLINES INC,SOUTHWEST,-674.74,Travel Expenses,5400,0.8772348212314816,Generated from template: Travel Expenses,False
+138,2025-08-08,DOMINOS PIZZA SAN JOSE INTERNATIONAL,DOMINOS,-94.71,Meals & Entertainment,5200,0.8822249229736537,Generated from template: Meals & Entertainment,False
+139,2025-06-24,SOUTHWEST AIRLINES,SOUTHWEST,-500.54,Travel Expenses,5400,0.911167776572595,Generated from template: Travel Expenses,False
+140,2025-07-27,INTERNET SERVICE PROVIDER,INTERNET,-203.35,Utilities,5700,0.8828006281817375,Generated from template: Utilities,False
+141,2025-07-14,TARGET OFFICE SECTION,TARGET,-275.72,Office Expenses,5000,0.8642871590442063,Generated from template: Office Expenses,False
+142,2025-06-11,EXXON MOBIL LA,EXXON,-86.72,Vehicle Expenses,5100,0.9339228846284597,Generated from template: Vehicle Expenses,False
+143,2025-05-23,ENTERPRISE RENT-A-CAR,ENTERPRISE,-817.21,Travel Expenses,5400,0.8592298467712733,Generated from template: Travel Expenses,False
+144,2025-06-14,WALMART SUPPLIES ENTERPRISES,WALMART,-211.43,Office Expenses,5000,0.9184614250989874,Generated from template: Office Expenses,False
+145,2025-06-07,OLIVE GARDEN CHARLOTTE,OLIVE,-84.54,Meals & Entertainment,5200,0.9158850744998421,Generated from template: Meals & Entertainment,False
+146,2025-06-22,MICRO CENTER WASHINGTON,MICRO,-275.06,Equipment Expenses,5500,0.9206955829879033,Generated from template: Equipment Expenses,False
+147,2025-07-10,TECH CONSULTING SERVICES,TECH,-1770.95,Professional Services,5600,0.7372194992124466,Ambiguous - consulting vs software,True
+148,2025-08-12,AMERICAN AIRLINES,AMERICAN,-730.79,Travel Expenses,5400,0.9219429999144845,Generated from template: Travel Expenses,False
+149,2025-07-03,SLACK TECHNOLOGIES,SLACK,-104.03,Software Expenses,5300,0.8938100083914504,Generated from template: Software Expenses,False
+150,2025-07-14,EXXON MOBIL COLUMBUS,EXXON,-66.31,Vehicle Expenses,5100,0.9207308643706077,Generated from template: Vehicle Expenses,False
+151,2025-05-26,APPLEBEES SEATTLE,APPLEBEES,-49.57,Meals & Entertainment,5200,0.9213544862611056,Generated from template: Meals & Entertainment,False
+152,2025-07-11,TECH CONSULTING SERVICES,TECH,-1258.33,Professional Services,5600,0.6198356923358084,Ambiguous - consulting vs software,True
+153,2025-08-03,NEWEGG HARDWARE,NEWEGG,-1628.35,Equipment Expenses,5500,0.9460108777434298,Generated from template: Equipment Expenses,False
+154,2025-05-30,SHELL TRAVEL CENTER,SHELL,-55.66,Travel Expenses,5400,0.6904010839817505,Ambiguous - travel stop vs regular gas,True
+155,2025-07-04,PROFESSIONAL SERVICES HOLDINGS,PROFESSIONAL,-2443.93,Professional Services,5600,0.8886078752490982,Generated from template: Professional Services,False
+156,2025-06-17,BP GAS STATION CHICAGO,BP,-78.98,Vehicle Expenses,5100,0.8601901305445976,Generated from template: Vehicle Expenses,False
+157,2025-07-05,IT SERVICES SAN ANTONIO,IT,-1308.21,Professional Services,5600,0.8733562446057893,Generated from template: Professional Services,False
+158,2025-06-12,WALMART BUSINESS PURCHASE,WALMART,-84.02,Office Expenses,5000,0.6137220305648712,Ambiguous - could be supplies or food,True
+159,2025-08-14,CHEVRON DALLAS CORP,CHEVRON,-60.96,Vehicle Expenses,5100,0.944408961479574,Generated from template: Vehicle Expenses,False
+160,2025-07-10,ADVANCE AUTO PARTS,ADVANCE,-47.56,Vehicle Expenses,5100,0.9161521340687355,Generated from template: Vehicle Expenses,False
+161,2025-07-15,BP GAS STATION CHICAGO SOLUTIONS,BP,-40.85,Vehicle Expenses,5100,0.9069849644678322,Generated from template: Vehicle Expenses,False
+162,2025-06-21,AT&T BUSINESS,AT&T,-284.51,Utilities,5700,0.8532716286855047,Generated from template: Utilities,False
+163,2025-05-17,OFFICEMAX AUSTIN SERVICES,OFFICEMAX,-60.91,Office Expenses,5000,0.945381592752108,Generated from template: Office Expenses,False
+164,2025-07-07,STAPLES SAN DIEGO,STAPLES,-244.62,Office Expenses,5000,0.8767740875975703,Generated from template: Office Expenses,False
+165,2025-06-05,AUDIT SERVICES,AUDIT,-2524.76,Professional Services,5600,0.8946547393043194,Generated from template: Professional Services,False
+166,2025-06-06,BUSINESS CONSULTANT,BUSINESS,-3436.41,Professional Services,5600,0.8573861900282873,Generated from template: Professional Services,False
+167,2025-07-29,SHELL TRAVEL CENTER,SHELL,-47.58,Travel Expenses,5400,0.7014825093936008,Ambiguous - travel stop vs regular gas,True
+168,2025-06-26,BEST BUY OFFICE,BEST,-177.07,Office Expenses,5000,0.8712626544054141,Generated from template: Office Expenses,False
+169,2025-05-30,OFFICEMAX DENVER,OFFICEMAX,-160.17,Office Expenses,5000,0.9370518569836767,Generated from template: Office Expenses,False
+170,2025-05-31,TAX PREPARATION,TAX,-1239.8,Professional Services,5600,0.8961447894178783,Generated from template: Professional Services,False
+171,2025-08-09,AMAZON ELECTRONICS,AMAZON,-1339.57,Equipment Expenses,5500,0.944519353956321,Generated from template: Equipment Expenses,False
+172,2025-08-14,STARBUCKS HOUSTON,STARBUCKS,-41.33,Meals & Entertainment,5200,0.901795775044374,Generated from template: Meals & Entertainment,False
+173,2025-06-16,PHONE COMPANY,PHONE,-75.48,Utilities,5700,0.9387259308528502,Generated from template: Utilities,False
+174,2025-08-08,AMAZON PURCHASE BUSINESS,AMAZON,-177.92,Office Expenses,5000,0.7755412426128429,Ambiguous - could be office supplies or equipment,True
+175,2025-05-24,ATLASSIAN JIRA,ATLASSIAN,-131.04,Software Expenses,5300,0.8664637121401526,Generated from template: Software Expenses,False
+176,2025-06-21,OLIVE GARDEN CHARLOTTE CO,OLIVE,-133.11,Meals & Entertainment,5200,0.9265813684297165,Generated from template: Meals & Entertainment,False
+177,2025-06-16,AUTO ZONE NYC,AUTO,-37.42,Vehicle Expenses,5100,0.9220074664104194,Generated from template: Vehicle Expenses,False
+178,2025-06-01,MARATHON PETROLEUM,MARATHON,-64.02,Vehicle Expenses,5100,0.9296227216600211,Generated from template: Vehicle Expenses,False
+179,2025-07-06,OLIVE GARDEN PHOENIX,OLIVE,-87.93,Meals & Entertainment,5200,0.909189277562791,Generated from template: Meals & Entertainment,False
+180,2025-08-06,AIRBNB SAN ANTONIO,AIRBNB,-203.54,Travel Expenses,5400,0.9352912815391897,Generated from template: Travel Expenses,False
+181,2025-08-05,MICRO CENTER CHICAGO,MICRO,-2324.99,Equipment Expenses,5500,0.9089789589205257,Generated from template: Equipment Expenses,False
+182,2025-07-02,STAPLES WASHINGTON,STAPLES,-21.52,Office Expenses,5000,0.9378721877823184,Generated from template: Office Expenses,False
+183,2025-07-01,COMCAST BUSINESS,COMCAST,-294.36,Utilities,5700,0.8560550089166609,Generated from template: Utilities,False
+184,2025-07-20,CONSULTING GROUP,CONSULTING,-329.55,Professional Services,5600,0.9465353590176854,Generated from template: Professional Services,False
+185,2025-07-03,VERIZON BUSINESS SYSTEMS,VERIZON,-77.38,Utilities,5700,0.9172828381873753,Generated from template: Utilities,False
+186,2025-06-06,OFFICE DEPOT LA,OFFICE,-59.4,Office Expenses,5000,0.9292079364362964,Generated from template: Office Expenses,False
+187,2025-05-31,ADVANCE AUTO PARTS LLC,ADVANCE,-55.78,Vehicle Expenses,5100,0.9063969581930019,Generated from template: Vehicle Expenses,False
+188,2025-06-28,AMAZON PURCHASE BUSINESS,AMAZON,-57.59,Office Expenses,5000,0.6487137794328047,Ambiguous - could be office supplies or equipment,True
+189,2025-05-30,MICRO CENTER JACKSONVILLE,MICRO,-938.42,Equipment Expenses,5500,0.9357733094400352,Generated from template: Equipment Expenses,False
+190,2025-06-10,GITHUB INC,GITHUB,-25.29,Software Expenses,5300,0.8690208908440811,Generated from template: Software Expenses,False
+191,2025-07-02,COMCAST BUSINESS SOLUTIONS,COMCAST,-287.43,Utilities,5700,0.859935462460613,Generated from template: Utilities,False
+192,2025-06-13,OFFICE DEPOT EL PASO,OFFICE,-24.45,Office Expenses,5000,0.8732660893390739,Generated from template: Office Expenses,False
+193,2025-07-03,SHELL TRAVEL CENTER,SHELL,-63.26,Travel Expenses,5400,0.790718503523825,Ambiguous - travel stop vs regular gas,True
+194,2025-06-06,APPLEBEES COLUMBUS,APPLEBEES,-89.96,Meals & Entertainment,5200,0.9243655442159584,Generated from template: Meals & Entertainment,False
+195,2025-05-28,DOMINOS PIZZA DENVER,DOMINOS,-100.51,Meals & Entertainment,5200,0.9318423464536664,Generated from template: Meals & Entertainment,False
+196,2025-08-01,SHELL TRAVEL CENTER,SHELL,-49.05,Travel Expenses,5400,0.7061113674862649,Ambiguous - travel stop vs regular gas,True
+197,2025-06-22,ELECTRIC COMPANY WASHINGTON,ELECTRIC,-257.53,Utilities,5700,0.9275740979603381,Generated from template: Utilities,False
+198,2025-06-19,AMERICAN AIRLINES LTD,AMERICAN,-181.66,Travel Expenses,5400,0.8538257197353263,Generated from template: Travel Expenses,False
+199,2025-07-28,ZOOM VIDEO COMMUNICATIONS,ZOOM,-141.81,Software Expenses,5300,0.8746215347788625,Generated from template: Software Expenses,False
+200,2025-05-22,COSTCO OFFICE SUPPLIES,COSTCO,-216.09,Office Expenses,5000,0.916126331856771,Generated from template: Office Expenses,False
+201,2025-07-24,ENTERPRISE RENT-A-CAR,ENTERPRISE,-883.51,Travel Expenses,5400,0.8831149868214406,Generated from template: Travel Expenses,False
+202,2025-06-23,GAS UTILITY SAN DIEGO,GAS,-137.17,Utilities,5700,0.9492692043626897,Generated from template: Utilities,False
+203,2025-05-23,TECH CONSULTING SERVICES,TECH,-1802.14,Professional Services,5600,0.7936797250622949,Ambiguous - consulting vs software,True
+204,2025-07-21,CONSULTING GROUP,CONSULTING,-4621.06,Professional Services,5600,0.9246292545492397,Generated from template: Professional Services,False
+205,2025-08-04,OFFICE DEPOT FORT WORTH LTD,OFFICE,-251.54,Office Expenses,5000,0.9385451747936806,Generated from template: Office Expenses,False
+206,2025-06-15,WALMART BUSINESS PURCHASE,WALMART,-57.26,Office Expenses,5000,0.6827627142353827,Ambiguous - could be supplies or food,True
+207,2025-08-08,LEGAL SERVICES LLC,LEGAL,-2138.4,Professional Services,5600,0.9469956794041106,Generated from template: Professional Services,False
+208,2025-07-30,PROFESSIONAL SERVICES,PROFESSIONAL,-1318.02,Professional Services,5600,0.8643117720128509,Generated from template: Professional Services,False
+209,2025-06-24,TAX PREPARATION CORP,TAX,-1521.77,Professional Services,5600,0.9337475922606421,Generated from template: Professional Services,False
+210,2025-07-25,BUSINESS CONSULTANT,BUSINESS,-2826.8,Professional Services,5600,0.8877210054213885,Generated from template: Professional Services,False
+211,2025-05-23,AMAZON PURCHASE BUSINESS,AMAZON,-76.14,Office Expenses,5000,0.6253517087425561,Ambiguous - could be office supplies or equipment,True
+212,2025-07-09,VERIZON BUSINESS,VERIZON,-230.55,Utilities,5700,0.9154921897493463,Generated from template: Utilities,False
+213,2025-07-18,BEST BUY COMPUTERS TECHNOLOGIES,BEST,-1202.53,Equipment Expenses,5500,0.9469055236065703,Generated from template: Equipment Expenses,False
+214,2025-07-09,EXXON MOBIL DENVER,EXXON,-25.82,Vehicle Expenses,5100,0.9322330918090058,Generated from template: Vehicle Expenses,False
+215,2025-07-25,WALMART BUSINESS PURCHASE,WALMART,-99.06,Office Expenses,5000,0.6501308393456248,Ambiguous - could be supplies or food,True
+216,2025-07-27,AMAZON PURCHASE BUSINESS,AMAZON,-137.97,Office Expenses,5000,0.7123366763139456,Ambiguous - could be office supplies or equipment,True
+217,2025-06-27,STAPLES TECHNOLOGY INC,STAPLES,-923.38,Equipment Expenses,5500,0.8615921601430958,Generated from template: Equipment Expenses,False
+218,2025-05-22,ENTERPRISE RENT-A-CAR TECHNOLOGIES,ENTERPRISE,-191.72,Travel Expenses,5400,0.920878528383417,Generated from template: Travel Expenses,False
+219,2025-08-14,WATER DEPARTMENT,WATER,-140.23,Utilities,5700,0.9445974085779432,Generated from template: Utilities,False
+220,2025-05-25,SALESFORCE.COM,SALESFORCE.COM,-44.7,Software Expenses,5300,0.8838085562147455,Generated from template: Software Expenses,False
+221,2025-06-20,APPLEBEES WASHINGTON,APPLEBEES,-81.15,Meals & Entertainment,5200,0.8935835976046637,Generated from template: Meals & Entertainment,False
+222,2025-07-22,CDW CORPORATION INTERNATIONAL,CDW,-602.93,Equipment Expenses,5500,0.9151509489433686,Generated from template: Equipment Expenses,False
+223,2025-07-03,AMAZON PURCHASE BUSINESS,AMAZON,-161.69,Office Expenses,5000,0.7623538570554785,Ambiguous - could be office supplies or equipment,True
+224,2025-05-27,PIZZA HUT DALLAS,PIZZA,-140.97,Meals & Entertainment,5200,0.8638374061516155,Generated from template: Meals & Entertainment,False
+225,2025-08-13,DROPBOX SUBSCRIPTION,DROPBOX,-140.04,Software Expenses,5300,0.8701151063389696,Generated from template: Software Expenses,False
+226,2025-06-04,AMAZON PURCHASE BUSINESS,AMAZON,-98.32,Office Expenses,5000,0.6131364466640228,Ambiguous - could be office supplies or equipment,True
+227,2025-08-06,HILTON HOTELS DALLAS GROUP,HILTON,-699.84,Travel Expenses,5400,0.9479797953828836,Generated from template: Travel Expenses,False
+228,2025-05-18,EXXON MOBIL SAN ANTONIO GROUP,EXXON,-36.66,Vehicle Expenses,5100,0.9208018485711031,Generated from template: Vehicle Expenses,False
+229,2025-07-11,DESIGN STUDIO,DESIGN,-3771.82,Professional Services,5600,0.9478337728220545,Generated from template: Professional Services,False
+230,2025-06-16,SALESFORCE.COM,SALESFORCE.COM,-145.65,Software Expenses,5300,0.8666311110603914,Generated from template: Software Expenses,False

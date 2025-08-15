@@ -9,12 +9,25 @@ from app.models.transactions import TransactionClean
 from app.models.classification import ClassificationRule
 from app.models.accounts import ChartOfAccounts
 from app.services.ai_service import AIService
+from app.services.ai import AIService as NewAIService
+from app.services.embeddings import EmbeddingService
 from app.core.config import settings
 
 class ClassificationService:
     def __init__(self, db: Session):
         self.db = db
         self.ai_service = AIService()
+        self.new_ai_service = NewAIService()
+        self.embedding_service = EmbeddingService(db)
+        
+        # Vendor mapping for rule-based classification
+        self.vendor_mappings = {
+            'AMAZON': {'coa_code': '5000', 'confidence': 0.93},
+            'MICROSOFT': {'coa_code': '5300', 'confidence': 0.95},
+            'UBER': {'coa_code': '5400', 'confidence': 0.92},
+            'STARBUCKS': {'coa_code': '5200', 'confidence': 0.90},
+            'SHELL': {'coa_code': '5100', 'confidence': 0.94}
+        }
         
         # Default classification rules
         self.default_rules = [
@@ -50,6 +63,70 @@ class ClassificationService:
             }
         ]
 
+    async def classify_transactions_pipeline(
+        self, 
+        transaction_ids: List[int], 
+        force_reclassify: bool = False,
+        mode: str = "auto"
+    ) -> List[Dict[str, Any]]:
+        """Classify transactions using the new pipeline approach"""
+        results = []
+        
+        for txn_id in transaction_ids:
+            transaction = self.db.query(TransactionClean).filter(
+                TransactionClean.id == txn_id
+            ).first()
+            
+            if not transaction:
+                continue
+            
+            # Skip if already classified and not forcing reclassification
+            if transaction.coa_id and not force_reclassify:
+                results.append({
+                    'transaction_id': txn_id,
+                    'predicted_coa_id': transaction.coa_id,
+                    'predicted_coa_name': self._get_coa_name(transaction.coa_id),
+                    'confidence_score': transaction.confidence_score or 1.0,
+                    'classification_method': 'existing',
+                    'source': 'existing'
+                })
+                continue
+            
+            result = None
+            
+            if mode == "auto":
+                # Sequential pipeline: rule → embedding → ml → llm
+                result = await self._classify_with_pipeline(transaction)
+            elif mode == "rule":
+                result = self._classify_with_enhanced_rules(transaction)
+            elif mode == "embed":
+                result = self._classify_with_embeddings(transaction)
+            elif mode == "ml":
+                result = self._classify_with_ml(transaction)
+            elif mode == "llm":
+                result = await self._classify_with_new_ai(transaction)
+            
+            if not result:
+                result = {
+                    'predicted_coa_id': None,
+                    'predicted_coa_name': 'Uncategorized',
+                    'confidence_score': 0.0,
+                    'classification_method': 'fallback',
+                    'source': 'fallback'
+                }
+            
+            # Update transaction with classification
+            if result.get('predicted_coa_id'):
+                transaction.coa_id = result['predicted_coa_id']
+                transaction.confidence_score = result['confidence_score']
+                transaction.category_predicted = result['predicted_coa_name']
+                self.db.commit()
+            
+            result['transaction_id'] = txn_id
+            results.append(result)
+        
+        return results
+
     async def classify_transactions(
         self, 
         transaction_ids: List[int], 
@@ -84,6 +161,7 @@ class ClassificationService:
                 # High confidence rule match
                 result = rule_result
                 result['classification_method'] = 'rule'
+                result['source'] = 'rule'
             else:
                 # Use AI classification
                 ai_result = await self._classify_with_ai(transaction)
@@ -96,16 +174,19 @@ class ClassificationService:
                         result = ai_result.copy()
                         result['confidence'] = combined_confidence
                         result['classification_method'] = 'hybrid'
+                        result['source'] = 'hybrid'
                     else:
                         result = ai_result
                         result['classification_method'] = 'ai'
+                        result['source'] = 'ai'
                 else:
                     # Fallback to rule result or default
                     result = rule_result or {
                         'predicted_coa_id': None,
                         'predicted_coa_name': 'Uncategorized',
                         'confidence': 0.0,
-                        'classification_method': 'fallback'
+                        'classification_method': 'fallback',
+                        'source': 'fallback'
                     }
             
             # Update transaction with classification
@@ -119,6 +200,233 @@ class ClassificationService:
             results.append(result)
         
         return results
+
+    async def _classify_with_pipeline(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
+        """Run full classification pipeline: rule → embedding → ML → LLM"""
+        
+        # Step 1: Enhanced rule-based classification
+        rule_result = self._classify_with_enhanced_rules(transaction)
+        if rule_result and rule_result['confidence_score'] >= 0.90:
+            return rule_result
+        
+        # Step 2: Embedding-based classification
+        embedding_result = self._classify_with_embeddings(transaction)
+        if embedding_result and embedding_result['confidence_score'] >= 0.85:
+            return embedding_result
+        
+        # Step 3: ML-based classification (placeholder)
+        ml_result = self._classify_with_ml(transaction)
+        if ml_result and ml_result['confidence_score'] >= 0.75:
+            return ml_result
+        
+        # Step 4: LLM fallback
+        llm_result = await self._classify_with_new_ai(transaction)
+        if llm_result:
+            return llm_result
+        
+        # Return best available result or None
+        candidates = [r for r in [rule_result, embedding_result, ml_result] if r]
+        if candidates:
+            return max(candidates, key=lambda x: x['confidence_score'])
+        
+        return None
+
+    def _classify_with_enhanced_rules(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
+        """Enhanced rule-based classification with vendor mapping"""
+        
+        # First check vendor mappings
+        counterparty = (transaction.counterparty_normalized or "").upper()
+        for vendor, mapping in self.vendor_mappings.items():
+            if vendor in counterparty:
+                coa = self.db.query(ChartOfAccounts).filter(
+                    ChartOfAccounts.code == mapping['coa_code']
+                ).first()
+                
+                if coa:
+                    return {
+                        'predicted_coa_id': coa.id,
+                        'predicted_coa_name': coa.name,
+                        'confidence_score': mapping['confidence'],
+                        'classification_method': 'rule',
+                        'source': 'vendor_mapping',
+                        'vendor_matched': vendor
+                    }
+        
+        # Fall back to regex rules
+        return self._classify_with_rules(transaction)
+
+    def _classify_with_embeddings(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
+        """Classify using embedding similarity"""
+        description = transaction.description_normalized or ""
+        counterparty = transaction.counterparty_normalized or ""
+        transaction_text = f"{description} {counterparty}"
+        
+        result = self.embedding_service.classify_by_embedding(
+            transaction_text, 
+            float(transaction.amount_base) if transaction.amount_base else None
+        )
+        
+        if result:
+            # Map to expected format
+            coa = self.db.query(ChartOfAccounts).filter(
+                ChartOfAccounts.code == result['predicted_coa_code']
+            ).first()
+            
+            if coa:
+                return {
+                    'predicted_coa_id': coa.id,
+                    'predicted_coa_name': coa.name,
+                    'confidence_score': result['confidence'],
+                    'classification_method': 'embedding',
+                    'source': 'embedding',
+                    'similarity_score': result.get('similarity_score')
+                }
+        
+        return None
+
+    def _classify_with_ml(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
+        """Placeholder for ML-based classification (LogReg/SVM)"""
+        # TODO: Implement actual ML classification
+        # This would involve:
+        # 1. Feature extraction from transaction data
+        # 2. Loading trained LogReg/SVM model
+        # 3. Making prediction with confidence score
+        
+        # For now, return None to skip ML step
+        return None
+
+    async def _classify_with_new_ai(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
+        """Classify using new AI service with LLM"""
+        # Get chart of accounts for context
+        coa_list = self.db.query(ChartOfAccounts).filter(
+            ChartOfAccounts.is_active == "true"
+        ).all()
+        
+        coa_context = [{"code": coa.code, "name": coa.name} for coa in coa_list]
+        
+        # Prepare transaction context
+        transaction_context = {
+            "description": transaction.description_normalized,
+            "counterparty": transaction.counterparty_normalized,
+            "amount": float(transaction.amount_base) if transaction.amount_base else 0.0,
+            "date": transaction.transaction_date.isoformat() if transaction.transaction_date else None
+        }
+        
+        # Get AI classification
+        ai_result = await self.new_ai_service.classify_transaction(
+            transaction_context, 
+            coa_context
+        )
+        
+        if ai_result:
+            # Find matching COA
+            matching_coa = self.db.query(ChartOfAccounts).filter(
+                ChartOfAccounts.code == ai_result['coa_code']
+            ).first()
+            
+            if matching_coa:
+                return {
+                    'predicted_coa_id': matching_coa.id,
+                    'predicted_coa_name': matching_coa.name,
+                    'confidence_score': ai_result['confidence'],
+                    'classification_method': 'llm',
+                    'source': 'llm',
+                    'reason': ai_result.get('reason')
+                }
+        
+        return None
+
+    def approve_classification(
+        self, 
+        transaction_id: int, 
+        approved_by: str,
+        create_rule: bool = False,
+        update_vendor_mapping: bool = False
+    ) -> Dict[str, Any]:
+        """Approve classification and optionally create rules or update vendor mapping"""
+        transaction = self.db.query(TransactionClean).filter(
+            TransactionClean.id == transaction_id
+        ).first()
+        
+        if not transaction:
+            raise ValueError("Transaction not found")
+        
+        result = {
+            'rule_created': False,
+            'vendor_mapping_updated': False
+        }
+        
+        # Mark as approved
+        transaction.is_reviewed = "true"
+        transaction.reviewed_by = approved_by
+        transaction.confidence_score = 1.0
+        
+        if create_rule and transaction.coa_id:
+            # Create new rule based on this transaction
+            rule_created = self._create_rule_from_transaction(transaction)
+            result['rule_created'] = rule_created
+        
+        if update_vendor_mapping and transaction.coa_id and transaction.counterparty_normalized:
+            # Update vendor mapping
+            mapping_updated = self._update_vendor_mapping(transaction)
+            result['vendor_mapping_updated'] = mapping_updated
+        
+        self.db.commit()
+        return result
+
+    def _create_rule_from_transaction(self, transaction: TransactionClean) -> bool:
+        """Create classification rule from approved transaction"""
+        try:
+            counterparty = transaction.counterparty_normalized or ""
+            key_words = self._extract_keywords(transaction.description_normalized or "", counterparty)
+            
+            if key_words:
+                keyword_pattern = "|".join(key_words)
+                coa = self.db.query(ChartOfAccounts).filter(
+                    ChartOfAccounts.id == transaction.coa_id
+                ).first()
+                
+                if coa:
+                    new_rule = ClassificationRule(
+                        rule_name=f"Auto-approved: {coa.name}",
+                        keyword_regex=f"({keyword_pattern})",
+                        suggested_coa_id=transaction.coa_id,
+                        confidence=0.85,
+                        priority=150,
+                        created_by="auto_approval",
+                        success_count=1,
+                        match_count=1
+                    )
+                    
+                    self.db.add(new_rule)
+                    return True
+        except Exception as e:
+            logger.error(f"Error creating rule from transaction: {e}")
+        
+        return False
+
+    def _update_vendor_mapping(self, transaction: TransactionClean) -> bool:
+        """Update vendor mapping from approved transaction"""
+        try:
+            counterparty = (transaction.counterparty_normalized or "").upper()
+            coa = self.db.query(ChartOfAccounts).filter(
+                ChartOfAccounts.id == transaction.coa_id
+            ).first()
+            
+            if coa and counterparty:
+                # Extract main vendor name (first significant word)
+                vendor_words = [w for w in counterparty.split() if len(w) > 3]
+                if vendor_words:
+                    vendor_key = vendor_words[0]
+                    self.vendor_mappings[vendor_key] = {
+                        'coa_code': coa.code,
+                        'confidence': 0.88
+                    }
+                    return True
+        except Exception as e:
+            logger.error(f"Error updating vendor mapping: {e}")
+        
+        return False
 
     def _classify_with_rules(self, transaction: TransactionClean) -> Optional[Dict[str, Any]]:
         """Classify transaction using rule-based matching"""
@@ -148,7 +456,9 @@ class ClassificationService:
                     return {
                         'predicted_coa_id': rule.suggested_coa_id,
                         'predicted_coa_name': self._get_coa_name(rule.suggested_coa_id),
-                        'confidence': rule.confidence,
+                        'confidence_score': rule.confidence,
+                        'classification_method': 'rule',
+                        'source': 'regex_rule',
                         'rule_id': rule.id
                     }
             except re.error:

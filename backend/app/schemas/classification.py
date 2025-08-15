@@ -11,8 +11,11 @@ class ClassificationResponse(BaseModel):
     predicted_coa_id: Optional[int]
     predicted_coa_name: Optional[str]
     confidence_score: float
-    classification_method: str  # rule, ai, hybrid
+    classification_method: str  # rule, embedding, ml, llm, hybrid
+    source: str  # source tag for frontend display
     rule_id: Optional[int] = None
+    similarity_score: Optional[float] = None
+    reason: Optional[str] = None
 
 class ClassificationRuleCreate(BaseModel):
     rule_name: str
@@ -44,6 +47,13 @@ class ClassificationReviewRequest(BaseModel):
     transaction_id: int
     correct_coa_id: int
     reviewed_by: str
+    notes: Optional[str] = None
+
+class ClassificationApprovalRequest(BaseModel):
+    transaction_id: int
+    approved_by: str
+    create_rule: bool = False
+    update_vendor_mapping: bool = False
     notes: Optional[str] = None
 
 class ClassificationAccuracyResponse(BaseModel):
