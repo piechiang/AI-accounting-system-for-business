@@ -1,0 +1,26 @@
+Keyword,Account Code,Account Name,Confidence,Rule Type,Created Date
+amazon,6100,Office Supplies,0.95,keyword,2024-01-01
+starbucks,6500,Meals & Entertainment,0.90,keyword,2024-01-01
+uber,7000,Travel,0.95,keyword,2024-01-01
+microsoft,6200,Software,0.98,keyword,2024-01-01
+google,6200,Software,0.98,keyword,2024-01-01
+zoom,6200,Software,0.98,keyword,2024-01-01
+dropbox,6200,Software,0.98,keyword,2024-01-01
+linkedin,6300,Marketing,0.90,keyword,2024-01-01
+adobe,6200,Software,0.98,keyword,2024-01-01
+aws,7200,Technology,0.95,keyword,2024-01-01
+github,6200,Software,0.98,keyword,2024-01-01
+slack,6200,Software,0.98,keyword,2024-01-01
+canva,6300,Marketing,0.90,keyword,2024-01-01
+hubspot,6300,Marketing,0.95,keyword,2024-01-01
+salesforce,6200,Software,0.98,keyword,2024-01-01
+mailchimp,6300,Marketing,0.95,keyword,2024-01-01
+quickbooks,6200,Software,0.98,keyword,2024-01-01
+hotel,7000,Travel,0.90,keyword,2024-01-01
+flight,7000,Travel,0.95,keyword,2024-01-01
+payroll,4100,Service Revenue,0.98,keyword,2024-01-01
+insurance,6800,Insurance,0.98,keyword,2024-01-01
+comcast,6600,Utilities,0.95,keyword,2024-01-01
+verizon,6700,Telecommunications,0.95,keyword,2024-01-01
+shell,7000,Vehicle Expenses,0.90,keyword,2024-01-01
+bank fee,7100,Bank Charges,0.98,keyword,2024-01-01

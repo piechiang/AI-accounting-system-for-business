@@ -1,0 +1,29 @@
+Account_Code,Account_Name,Debit_Balance,Credit_Balance,Tax_Category,Description
+1010,Cash - Operating,25000.00,0.00,cash,Primary operating account
+1100,Accounts Receivable,45000.00,0.00,accounts_receivable,Trade receivables
+1110,Allowance for Doubtful Accounts,0.00,2250.00,allowance_doubtful_accounts,5% of AR
+1200,Inventory,35000.00,0.00,inventory,Finished goods inventory
+1400,Equipment,150000.00,0.00,depreciable_assets,Office equipment and machinery
+1500,Accumulated Depreciation,0.00,60000.00,accumulated_depreciation,Book depreciation
+2000,Accounts Payable,0.00,18000.00,accounts_payable,Trade payables
+2100,Accrued Expenses,0.00,8500.00,accrued_expenses,Accrued wages and benefits
+2200,Notes Payable,0.00,50000.00,long_term_debt,Bank loan
+3000,Common Stock,0.00,10000.00,common_stock,Issued shares
+3400,Retained Earnings,0.00,85000.00,retained_earnings,Beginning retained earnings
+4100,Sales Revenue,0.00,750000.00,sales_revenue,Product sales
+4200,Dividend Income,0.00,5000.00,dividend_income,Qualifying dividends
+4300,Municipal Bond Interest,0.00,3000.00,tax_exempt_interest,Tax-exempt income
+5000,Cost of Goods Sold,450000.00,0.00,cost_of_goods_sold,Direct costs
+6100,Officer Compensation,85000.00,0.00,officer_compensation,President salary
+6200,Salaries and Wages,120000.00,0.00,salaries_wages,Employee wages
+6300,Rent Expense,24000.00,0.00,rent_expense,Office rent
+6400,Insurance,12000.00,0.00,insurance,General liability
+6500,Meals and Entertainment,8000.00,0.00,meals_entertainment,Business meals (50% limit)
+6530,Entertainment,3000.00,0.00,entertainment,Client entertainment (100% nondeductible)
+6600,Professional Services,15000.00,0.00,professional_services,Legal and accounting
+6700,Depreciation Expense,20000.00,0.00,depreciation_expense,Book depreciation
+6800,Charitable Contributions,25000.00,0.00,charitable_contributions,Donations (10% limit may apply)
+6850,Federal Income Tax,18000.00,0.00,federal_tax_expense,Estimated tax payments
+6920,Fines and Penalties,2500.00,0.00,fines_penalties,Non-deductible penalties
+6810,Life Insurance Premiums,5000.00,0.00,life_insurance_premiums,Officer life insurance (nondeductible)
+6930,Political Contributions,1000.00,0.00,political_contributions,Non-deductible contributions

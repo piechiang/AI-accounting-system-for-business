@@ -1,0 +1,17 @@
+Date,Description,Amount,Balance,Reference,Category
+2024-01-02,"PAYROLL DEPOSIT - ACME CORP",5000.00,15234.56,ACH001,Income
+2024-01-03,"Amazon.com Purchase","-89.99",15144.57,DEB001,Office Supplies
+2024-01-03,"Starbucks Coffee #1234","-12.45",15132.12,DEB002,Meals & Entertainment
+2024-01-05,"Office Depot - Supplies","-234.78",14897.34,DEB003,Office Supplies
+2024-01-05,"ATM Withdrawal","-100.00",14797.34,ATM001,Cash Withdrawal
+2024-01-08,"Microsoft 365 Subscription","-15.99",14781.35,DEB004,Software
+2024-01-10,"Client Payment - XYZ Corp",2500.00,17281.35,ACH002,Revenue
+2024-01-12,"Uber Ride to Airport","-45.67",17235.68,DEB005,Travel
+2024-01-15,"Hotel Marriott - Business Trip","-189.50",17046.18,DEB006,Travel
+2024-01-15,"Flight Tickets - Delta","-456.78",16589.40,DEB007,Travel
+2024-01-18,"Internet Bill - Comcast","-79.99",16509.41,DEB008,Utilities
+2024-01-20,"Gas Station - Shell","-52.34",16457.07,DEB009,Vehicle Expenses
+2024-01-22,"Consulting Fee - ABC LLC",1800.00,18257.07,ACH003,Revenue
+2024-01-25,"Phone Bill - Verizon","-85.44",18171.63,DEB010,Telecommunications
+2024-01-28,"Bank Service Fee","-12.00",18159.63,FEE001,Bank Charges
+2024-01-30,"Insurance Premium - Business","-125.00",18034.63,DEB011,Insurance

@@ -1,0 +1,285 @@
+{
+  "schedule_info": {
+    "schedule_name": "Schedule M-2",
+    "description": "Analysis of Unappropriated Retained Earnings per Books",
+    "form_reference": "1120",
+    "purpose": "Track changes in retained earnings during the tax year"
+  },
+
+  "beginning_balance": {
+    "line_1": {
+      "description": "Balance at beginning of year",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "required": true
+      },
+      "source": "schedule_l.line_28_col_b",
+      "tb_mapping": ["retained_earnings_beginning"],
+      "cross_reference": "schedule_l.line_28.beginning_of_year",
+      "notes": "Must tie to Schedule L, line 28, column (b)"
+    }
+  },
+
+  "additions_to_retained_earnings": {
+    "line_2": {
+      "description": "Net income (loss) per books",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "required": true
+      },
+      "source": "schedule_m1.line_1",
+      "cross_reference": "schedule_m1.line_1",
+      "notes": "Must tie to Schedule M-1, line 1"
+    },
+    "line_3": {
+      "description": "Other increases (itemize)",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        {
+          "item": "prior_period_adjustments_positive",
+          "description": "Prior period adjustments (increases)"
+        },
+        {
+          "item": "correction_errors_positive", 
+          "description": "Correction of errors (increases)"
+        },
+        {
+          "item": "equity_adjustments_positive",
+          "description": "Other equity adjustments (increases)"
+        },
+        {
+          "item": "capital_contributions_to_re",
+          "description": "Capital contributions allocated to retained earnings"
+        }
+      ],
+      "requires_statement": true,
+      "notes": "Attach statement detailing other increases"
+    },
+    "line_4": {
+      "description": "Total increases (lines 2 and 3)",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "calculation": "line_2 + line_3",
+        "auto_calculate": true
+      }
+    }
+  },
+
+  "subtractions_from_retained_earnings": {
+    "line_5": {
+      "description": "Distributions: Cash",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "tb_mapping": ["cash_dividends", "cash_distributions"],
+      "coa_codes": ["3450"],
+      "notes": "Cash dividends and distributions to shareholders"
+    },
+    "line_6": {
+      "description": "Distributions: Stock",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "tb_mapping": ["stock_dividends"],
+      "notes": "Stock dividends (at fair market value)"
+    },
+    "line_7": {
+      "description": "Distributions: Property",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "tb_mapping": ["property_distributions"],
+      "notes": "Property distributions (at fair market value)"
+    },
+    "line_8": {
+      "description": "Other decreases (itemize)",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        {
+          "item": "prior_period_adjustments_negative",
+          "description": "Prior period adjustments (decreases)"
+        },
+        {
+          "item": "correction_errors_negative",
+          "description": "Correction of errors (decreases)"
+        },
+        {
+          "item": "treasury_stock_transactions",
+          "description": "Treasury stock transactions affecting retained earnings"
+        },
+        {
+          "item": "appropriations_to_reserves",
+          "description": "Appropriations to specific reserves"
+        },
+        {
+          "item": "spin_off_distributions",
+          "description": "Spin-off distributions"
+        }
+      ],
+      "requires_statement": true,
+      "notes": "Attach statement detailing other decreases"
+    },
+    "line_9": {
+      "description": "Total decreases (lines 5, 6, 7, and 8)",
+      "validation": {
+        "type": "currency",
+        "min": 0,
+        "calculation": "line_5 + line_6 + line_7 + line_8",
+        "auto_calculate": true
+      }
+    }
+  },
+
+  "ending_balance": {
+    "line_10": {
+      "description": "Balance at end of year (line 1 plus line 4 minus line 9)",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "calculation": "line_1 + line_4 - line_9",
+        "auto_calculate": true
+      },
+      "cross_reference": "schedule_l.line_28_col_d",
+      "notes": "Must tie to Schedule L, line 28, column (d)"
+    }
+  },
+
+  "validation_rules": {
+    "schedule_l_tie": {
+      "rule": "ending_balance_ties_schedule_l",
+      "description": "Ending balance must equal Schedule L retained earnings",
+      "condition": "line_10 == schedule_l.line_28_col_d",
+      "error_message": "Schedule M-2 ending balance does not tie to Schedule L retained earnings"
+    },
+    "beginning_balance_tie": {
+      "rule": "beginning_balance_ties_schedule_l",
+      "description": "Beginning balance must equal Schedule L prior year ending balance",
+      "condition": "line_1 == schedule_l.line_28_col_b",
+      "error_message": "Schedule M-2 beginning balance does not tie to Schedule L beginning balance"
+    },
+    "schedule_m1_tie": {
+      "rule": "net_income_ties_schedule_m1",
+      "description": "Net income per books must tie to Schedule M-1",
+      "condition": "line_2 == schedule_m1.line_1",
+      "error_message": "Schedule M-2 net income does not tie to Schedule M-1"
+    },
+    "calculation_check": {
+      "rule": "ending_balance_calculation",
+      "description": "Ending balance calculation must be correct",
+      "condition": "line_10 == line_1 + line_4 - line_9",
+      "error_message": "Schedule M-2 ending balance calculation is incorrect"
+    }
+  },
+
+  "common_scenarios": {
+    "c_corporation_distributions": {
+      "description": "Typical C-Corporation distribution scenarios",
+      "scenarios": [
+        {
+          "scenario": "cash_dividend",
+          "description": "Cash dividend declared and paid",
+          "line_5": "dividend_amount",
+          "book_entry": "Dr. Retained Earnings, Cr. Dividends Payable"
+        },
+        {
+          "scenario": "stock_dividend", 
+          "description": "Stock dividend (small - less than 25%)",
+          "line_6": "fair_market_value_of_shares",
+          "book_entry": "Dr. Retained Earnings, Cr. Common Stock, Cr. Additional Paid-in Capital"
+        },
+        {
+          "scenario": "property_distribution",
+          "description": "Distribution of appreciated property",
+          "line_7": "fair_market_value_of_property",
+          "tax_impact": "Gain recognition to corporation"
+        }
+      ]
+    },
+    "prior_period_adjustments": {
+      "description": "Common prior period adjustments",
+      "examples": [
+        {
+          "item": "accounting_method_change",
+          "description": "Section 481(a) adjustment for accounting method change"
+        },
+        {
+          "item": "error_correction",
+          "description": "Correction of material errors from prior years"
+        },
+        {
+          "item": "tax_return_adjustments",
+          "description": "Adjustments from amended returns or audits"
+        }
+      ]
+    }
+  },
+
+  "automation_hints": {
+    "beginning_balance": {
+      "source": "prior_year_return",
+      "field": "schedule_m2.line_10",
+      "auto_populate": true
+    },
+    "net_income": {
+      "source": "financial_statements",
+      "field": "net_income",
+      "cross_check": "schedule_m1.line_1",
+      "auto_populate": true
+    },
+    "cash_distributions": {
+      "source": "gl_account",
+      "coa_mapping": ["3450", "3455"],
+      "auto_populate": true
+    },
+    "stock_dividends": {
+      "source": "equity_activity",
+      "trigger": "stock_dividend_declared",
+      "valuation": "fair_market_value",
+      "auto_populate": false
+    }
+  },
+
+  "supporting_schedules": {
+    "distributions_detail": {
+      "required_if": "line_5 + line_6 + line_7 > 100000",
+      "format": "statement",
+      "contents": [
+        "date_of_distribution",
+        "type_of_distribution",
+        "number_of_shares_or_description",
+        "fair_market_value",
+        "recipient_information"
+      ]
+    },
+    "other_increases_detail": {
+      "required_if": "line_3 > 0",
+      "format": "statement",
+      "contents": [
+        "description_of_increase",
+        "amount",
+        "explanation_or_supporting_documentation"
+      ]
+    },
+    "other_decreases_detail": {
+      "required_if": "line_8 > 0",
+      "format": "statement", 
+      "contents": [
+        "description_of_decrease",
+        "amount",
+        "explanation_or_supporting_documentation"
+      ]
+    }
+  }
+}

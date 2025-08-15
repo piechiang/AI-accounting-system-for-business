@@ -1,0 +1,486 @@
+{
+  "form_info": {
+    "form_number": "1120",
+    "form_title": "U.S. Corporation Income Tax Return",
+    "tax_year": 2024,
+    "version": "2024.1.0",
+    "irs_revision_date": "2024-01"
+  },
+  
+  "income_section": {
+    "line_1a": {
+      "description": "Gross receipts or sales",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["gross_receipts", "sales_revenue"],
+      "schedule_reference": null
+    },
+    "line_1b": {
+      "description": "Returns and allowances",
+      "validation": {
+        "required": false,
+        "type": "currency", 
+        "min": 0
+      },
+      "tax_mapping": ["sales_returns", "sales_allowances"],
+      "schedule_reference": null
+    },
+    "line_1c": {
+      "description": "Net sales (line 1a minus line 1b)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_1a - line_1b"
+      },
+      "tax_mapping": ["net_sales"],
+      "auto_calculate": true
+    },
+    "line_2": {
+      "description": "Cost of goods sold",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["cost_of_goods_sold", "inventory_cogs"],
+      "schedule_reference": "Schedule A"
+    },
+    "line_3": {
+      "description": "Gross profit (line 1c minus line 2)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_1c - line_2"
+      },
+      "tax_mapping": ["gross_profit"],
+      "auto_calculate": true
+    },
+    "line_4": {
+      "description": "Dividends",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["dividend_income"],
+      "schedule_reference": "Schedule C"
+    },
+    "line_5": {
+      "description": "Interest",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["interest_income"],
+      "schedule_reference": null
+    },
+    "line_6": {
+      "description": "Gross rents",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["rental_income"],
+      "schedule_reference": null
+    },
+    "line_7": {
+      "description": "Gross royalties",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["royalty_income"],
+      "schedule_reference": null
+    },
+    "line_8": {
+      "description": "Capital gain net income",
+      "validation": {
+        "required": false,
+        "type": "currency"
+      },
+      "tax_mapping": ["capital_gains"],
+      "schedule_reference": "Schedule D"
+    },
+    "line_9": {
+      "description": "Net gain or (loss) from Form 4797",
+      "validation": {
+        "required": false,
+        "type": "currency"
+      },
+      "tax_mapping": ["form_4797_gain_loss"],
+      "schedule_reference": "Form 4797"
+    },
+    "line_10": {
+      "description": "Other income",
+      "validation": {
+        "required": false,
+        "type": "currency"
+      },
+      "tax_mapping": ["other_income"],
+      "schedule_reference": "Statement required"
+    },
+    "line_11": {
+      "description": "Total income (lines 3 through 10)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_3 + line_4 + line_5 + line_6 + line_7 + line_8 + line_9 + line_10"
+      },
+      "tax_mapping": ["total_income"],
+      "auto_calculate": true
+    }
+  },
+
+  "deduction_section": {
+    "line_12": {
+      "description": "Compensation of officers",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["officer_compensation"],
+      "schedule_reference": "Schedule E"
+    },
+    "line_13": {
+      "description": "Salaries and wages",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["salaries_wages"],
+      "schedule_reference": null
+    },
+    "line_14": {
+      "description": "Repairs and maintenance",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["repairs_maintenance"],
+      "schedule_reference": null
+    },
+    "line_15": {
+      "description": "Bad debts",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["bad_debt_expense"],
+      "schedule_reference": null
+    },
+    "line_16": {
+      "description": "Rents",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["rent_expense"],
+      "schedule_reference": null
+    },
+    "line_17": {
+      "description": "Taxes and licenses",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["taxes_licenses"],
+      "schedule_reference": null
+    },
+    "line_18": {
+      "description": "Interest",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["interest_expense"],
+      "schedule_reference": null
+    },
+    "line_19": {
+      "description": "Charitable contributions",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0,
+        "max_percentage": {
+          "base": "line_30_taxable_income_before_contributions",
+          "percentage": 0.10,
+          "description": "Limited to 10% of taxable income"
+        }
+      },
+      "tax_mapping": ["charitable_contributions"],
+      "schedule_reference": null
+    },
+    "line_20": {
+      "description": "Depreciation",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["depreciation_expense"],
+      "schedule_reference": "Form 4562"
+    },
+    "line_21": {
+      "description": "Depletion",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["depletion_expense"],
+      "schedule_reference": null
+    },
+    "line_22": {
+      "description": "Advertising",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["advertising_expense"],
+      "schedule_reference": null
+    },
+    "line_23": {
+      "description": "Pension, profit-sharing, etc., plans",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["pension_expense"],
+      "schedule_reference": null
+    },
+    "line_24": {
+      "description": "Employee benefit programs",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["employee_benefits"],
+      "schedule_reference": null
+    },
+    "line_25": {
+      "description": "Domestic production activities deduction",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["domestic_production_deduction"],
+      "schedule_reference": "Form 8903"
+    },
+    "line_26": {
+      "description": "Other deductions",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["other_deductions"],
+      "schedule_reference": "Statement required"
+    },
+    "line_27": {
+      "description": "Total deductions (lines 12 through 26)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_12 + line_13 + line_14 + line_15 + line_16 + line_17 + line_18 + line_19 + line_20 + line_21 + line_22 + line_23 + line_24 + line_25 + line_26"
+      },
+      "tax_mapping": ["total_deductions"],
+      "auto_calculate": true
+    },
+    "line_28": {
+      "description": "Taxable income before NOL and special deductions (line 11 minus line 27)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_11 - line_27"
+      },
+      "tax_mapping": ["taxable_income_before_special_deductions"],
+      "auto_calculate": true
+    },
+    "line_29a": {
+      "description": "Net operating loss deduction",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["net_operating_loss"],
+      "schedule_reference": null
+    },
+    "line_29b": {
+      "description": "Special deductions",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["special_deductions"],
+      "schedule_reference": "Schedule C"
+    },
+    "line_30": {
+      "description": "Taxable income (line 28 minus lines 29a and 29b)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "min": 0,
+        "calculation": "line_28 - line_29a - line_29b"
+      },
+      "tax_mapping": ["taxable_income"],
+      "auto_calculate": true
+    }
+  },
+
+  "tax_and_payments_section": {
+    "line_31": {
+      "description": "Total tax",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["total_tax"],
+      "schedule_reference": "Schedule J"
+    },
+    "line_32a": {
+      "description": "2023 overpayment credited to 2024",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["prior_year_overpayment"],
+      "schedule_reference": null
+    },
+    "line_32b": {
+      "description": "2024 estimated tax payments",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["estimated_tax_payments"],
+      "schedule_reference": null
+    },
+    "line_32c": {
+      "description": "Tax deposited with Form 7004",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["extension_payments"],
+      "schedule_reference": null
+    },
+    "line_32d": {
+      "description": "Credit for tax paid on undistributed capital gains",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["capital_gains_credit"],
+      "schedule_reference": null
+    },
+    "line_32e": {
+      "description": "Credit for federal tax on fuels",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["fuel_tax_credit"],
+      "schedule_reference": "Form 4136"
+    },
+    "line_33": {
+      "description": "Total payments (lines 32a through 32e)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "calculation": "line_32a + line_32b + line_32c + line_32d + line_32e"
+      },
+      "tax_mapping": ["total_payments"],
+      "auto_calculate": true
+    },
+    "line_34": {
+      "description": "Estimated tax penalty",
+      "validation": {
+        "required": false,
+        "type": "currency",
+        "min": 0
+      },
+      "tax_mapping": ["estimated_tax_penalty"],
+      "schedule_reference": "Form 2220"
+    },
+    "line_35": {
+      "description": "Amount owed (line 31 plus line 34 minus line 33)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "min": 0,
+        "calculation": "max(0, line_31 + line_34 - line_33)"
+      },
+      "tax_mapping": ["tax_due"],
+      "auto_calculate": true
+    },
+    "line_36": {
+      "description": "Overpayment (line 33 minus line 31 and line 34)",
+      "validation": {
+        "required": true,
+        "type": "currency",
+        "min": 0,
+        "calculation": "max(0, line_33 - line_31 - line_34)"
+      },
+      "tax_mapping": ["overpayment"],
+      "auto_calculate": true
+    }
+  },
+
+  "validation_rules": {
+    "balance_checks": [
+      {
+        "rule": "either_amount_owed_or_overpayment",
+        "description": "Either line 35 (amount owed) or line 36 (overpayment) should be greater than 0, but not both",
+        "condition": "(line_35 > 0 && line_36 == 0) || (line_35 == 0 && line_36 > 0) || (line_35 == 0 && line_36 == 0)"
+      },
+      {
+        "rule": "charitable_contributions_limit",
+        "description": "Charitable contributions cannot exceed 10% of taxable income before contributions",
+        "condition": "line_19 <= (line_30 + line_19) * 0.10"
+      },
+      {
+        "rule": "positive_taxable_income",
+        "description": "Taxable income (line 30) should not be negative",
+        "condition": "line_30 >= 0"
+      }
+    ],
+    
+    "cross_form_references": [
+      {
+        "reference": "schedule_l_retained_earnings",
+        "description": "Schedule L retained earnings should tie to Schedule M-2",
+        "validation": "schedule_l.line_26_col_d == schedule_m2.line_7"
+      },
+      {
+        "reference": "book_income_tie",
+        "description": "Schedule M-1 book income should tie to financial statements",
+        "validation": "schedule_m1.line_1 == financial_statements.net_income"
+      }
+    ]
+  }
+}

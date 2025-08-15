@@ -1,0 +1,7 @@
+*Date,*Amount,Payee,*Description,*Reference,AnalysisCode,Analysis Description
+2024-01-02,5000.00,ACME CORP,Payroll Deposit - ACME CORP,ACH001,4100,Service Revenue
+2024-01-03,-89.99,Amazon,Amazon.com Purchase,DEB001,6100,Office Supplies
+2024-01-03,-12.45,Starbucks,Starbucks Coffee #1234,DEB002,6500,Meals & Entertainment
+2024-01-05,-234.78,Office Depot,Office Depot - Supplies,DEB003,6100,Office Supplies
+2024-01-08,-15.99,Microsoft,Microsoft 365 Subscription,DEB004,6200,Software
+2024-01-10,2500.00,XYZ Corp,Client Payment - XYZ Corp,ACH002,4100,Service Revenue

@@ -1,0 +1,1 @@
+# AI Accounting Assistant Backend Application

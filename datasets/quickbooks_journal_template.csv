@@ -1,0 +1,7 @@
+Date,Account,Debits,Credits,Memo,Entity
+2024-01-02,Business Checking,,5000.00,Payroll Deposit - ACME CORP,ACME CORP
+2024-01-02,Service Revenue,5000.00,,Payroll Deposit - ACME CORP,ACME CORP
+2024-01-03,Office Supplies,89.99,,Amazon.com Purchase,Amazon
+2024-01-03,Business Checking,,89.99,Amazon.com Purchase,Amazon
+2024-01-03,Meals & Entertainment,12.45,,Starbucks Coffee,Starbucks
+2024-01-03,Business Checking,,12.45,Starbucks Coffee,Starbucks

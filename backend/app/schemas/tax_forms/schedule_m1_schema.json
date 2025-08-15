@@ -1,0 +1,275 @@
+{
+  "schedule_info": {
+    "schedule_name": "Schedule M-1",
+    "description": "Reconciliation of Income (Loss) per Books With Income per Return",
+    "form_reference": "1120",
+    "purpose": "Bridge between book income and taxable income"
+  },
+
+  "book_to_tax_additions": {
+    "line_1": {
+      "description": "Net income (loss) per books",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "required": true
+      },
+      "source": "financial_statements.net_income",
+      "tb_mapping": ["net_income"],
+      "notes": "Starting point - book income from financial statements"
+    },
+    "line_2": {
+      "description": "Federal income tax per books",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "tb_mapping": ["federal_income_tax_expense"],
+      "coa_codes": ["6850"],
+      "adjustment_type": "book_tax_addition",
+      "notes": "Tax expense recorded in books but not deductible for tax"
+    },
+    "line_3": {
+      "description": "Excess of capital losses over capital gains",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "tb_mapping": ["excess_capital_losses"],
+      "adjustment_type": "book_tax_addition",
+      "notes": "Capital losses in excess of capital gains (not deductible)"
+    },
+    "line_4": {
+      "description": "Income subject to tax not recorded on books this year",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        "accrual_adjustments",
+        "constructive_dividends",
+        "debt_forgiveness_income"
+      ],
+      "adjustment_type": "tax_only_income",
+      "notes": "Income recognized for tax but not book purposes"
+    },
+    "line_5": {
+      "description": "Expenses recorded on books this year not deducted on this return",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        {
+          "item": "meals_entertainment_50_percent",
+          "description": "50% limitation on meals and entertainment",
+          "calculation": "meals_entertainment_expense * 0.50"
+        },
+        {
+          "item": "fines_penalties",
+          "description": "Fines and penalties - not deductible",
+          "tb_mapping": ["fines_penalties"]
+        },
+        {
+          "item": "life_insurance_premiums",
+          "description": "Life insurance premiums (officer/key employee)",
+          "tb_mapping": ["life_insurance_premiums"]
+        },
+        {
+          "item": "political_contributions",
+          "description": "Political contributions - not deductible",
+          "tb_mapping": ["political_contributions"]
+        },
+        {
+          "item": "excess_charitable_contributions",
+          "description": "Charitable contributions in excess of 10% limit",
+          "calculation": "max(0, charitable_contributions - taxable_income * 0.10)"
+        },
+        {
+          "item": "book_depreciation_excess",
+          "description": "Book depreciation in excess of tax depreciation",
+          "calculation": "max(0, book_depreciation - tax_depreciation)"
+        }
+      ],
+      "adjustment_type": "nondeductible_expense",
+      "notes": "Book expenses that are not deductible for tax purposes"
+    },
+    "line_6": {
+      "description": "Other additions",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        "amortization_differences",
+        "timing_differences",
+        "other_permanent_differences"
+      ],
+      "adjustment_type": "other_addition",
+      "notes": "Other items increasing taxable income over book income"
+    },
+    "line_7": {
+      "description": "Total additions (lines 2 through 6)",
+      "validation": {
+        "type": "currency",
+        "calculation": "line_2 + line_3 + line_4 + line_5 + line_6",
+        "auto_calculate": true
+      },
+      "adjustment_type": "total_additions"
+    }
+  },
+
+  "tax_to_book_subtractions": {
+    "line_8": {
+      "description": "Income recorded on books this year not included on this return",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        {
+          "item": "municipal_bond_interest",
+          "description": "Tax-exempt municipal bond interest",
+          "tb_mapping": ["tax_exempt_interest"]
+        },
+        {
+          "item": "life_insurance_proceeds",
+          "description": "Life insurance proceeds",
+          "tb_mapping": ["life_insurance_proceeds"]
+        },
+        {
+          "item": "federal_tax_refund",
+          "description": "Federal income tax refund",
+          "tb_mapping": ["federal_tax_refund"]
+        }
+      ],
+      "adjustment_type": "book_only_income",
+      "notes": "Income recorded in books but not taxable"
+    },
+    "line_9": {
+      "description": "Deductions on this return not charged against book income this year",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        {
+          "item": "tax_depreciation_excess",
+          "description": "Tax depreciation in excess of book depreciation",
+          "calculation": "max(0, tax_depreciation - book_depreciation)"
+        },
+        {
+          "item": "dividends_received_deduction",
+          "description": "Dividends received deduction",
+          "calculation": "qualifying_dividends * applicable_percentage"
+        },
+        {
+          "item": "domestic_production_deduction",
+          "description": "Domestic production activities deduction",
+          "tb_mapping": ["domestic_production_deduction"]
+        }
+      ],
+      "adjustment_type": "tax_only_deduction",
+      "notes": "Deductions allowed for tax but not recorded in books"
+    },
+    "line_10": {
+      "description": "Other subtractions",
+      "validation": {
+        "type": "currency",
+        "min": 0
+      },
+      "common_items": [
+        "timing_differences_reversing",
+        "other_permanent_differences"
+      ],
+      "adjustment_type": "other_subtraction",
+      "notes": "Other items decreasing taxable income below book income"
+    },
+    "line_11": {
+      "description": "Total subtractions (lines 8 through 10)",
+      "validation": {
+        "type": "currency",
+        "calculation": "line_8 + line_9 + line_10",
+        "auto_calculate": true
+      },
+      "adjustment_type": "total_subtractions"
+    },
+    "line_12": {
+      "description": "Income (loss) per tax return (line 1 plus line 7 minus line 11)",
+      "validation": {
+        "type": "currency",
+        "can_be_negative": true,
+        "calculation": "line_1 + line_7 - line_11",
+        "auto_calculate": true,
+        "cross_reference": "form_1120.line_30"
+      },
+      "notes": "Must tie to Form 1120, Line 30 (Taxable Income)"
+    }
+  },
+
+  "common_adjustments": {
+    "permanent_differences": {
+      "description": "Items that affect book or tax income but never reverse",
+      "examples": [
+        "municipal_bond_interest",
+        "life_insurance_premiums_nondeductible",
+        "fines_penalties",
+        "meals_entertainment_50_percent",
+        "political_contributions"
+      ]
+    },
+    "timing_differences": {
+      "description": "Items that affect different periods for book vs tax",
+      "examples": [
+        "depreciation_methods",
+        "installment_sales",
+        "warranty_reserves",
+        "bad_debt_methods"
+      ]
+    }
+  },
+
+  "validation_rules": {
+    "reconciliation_tie": {
+      "rule": "m1_ties_to_taxable_income",
+      "description": "Schedule M-1 Line 12 must equal Form 1120 Line 30",
+      "condition": "line_12 == form_1120.line_30",
+      "error_message": "Schedule M-1 reconciliation does not tie to taxable income on Form 1120"
+    },
+    "logical_checks": {
+      "meals_50_percent": {
+        "rule": "meals_50_percent_limitation",
+        "description": "50% meals limitation should not exceed total meals expense",
+        "condition": "line_5.meals_entertainment_50_percent <= total_meals_expense * 0.50",
+        "warning_message": "50% meals adjustment appears excessive"
+      },
+      "charitable_limit": {
+        "rule": "charitable_contributions_10_percent",
+        "description": "Excess charitable contributions based on 10% limitation",
+        "condition": "line_5.excess_charitable_contributions == max(0, charitable_contributions - (line_12 + charitable_contributions) * 0.10)",
+        "warning_message": "Charitable contribution limitation calculation may be incorrect"
+      }
+    }
+  },
+
+  "automation_hints": {
+    "federal_tax_expense": {
+      "source": "gl_account",
+      "coa_mapping": ["6850", "6851"],
+      "auto_populate": true
+    },
+    "meals_entertainment": {
+      "source": "gl_account", 
+      "coa_mapping": ["6500", "6510"],
+      "adjustment": "multiply_by_0.5",
+      "auto_populate": true
+    },
+    "depreciation_difference": {
+      "source": "comparison",
+      "book_source": "financial_statements.depreciation_expense",
+      "tax_source": "form_4562.total_depreciation",
+      "calculation": "abs(book_source - tax_source)",
+      "auto_populate": true
+    }
+  }
+}
